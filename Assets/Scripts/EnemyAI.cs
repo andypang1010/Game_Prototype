@@ -1,0 +1,181 @@
+using UnityEngine;
+using Pathfinding;
+
+public class EnemyAI : MonoBehaviour
+{
+    [Header("Pathfinding")]
+    public Transform target;
+
+    public bool initialFaceRight = true;
+    public float pathRefreshRate = 0.5f;
+    public float nextWaypointDistance = 0.1f;
+    public float stoppingDistance = 2f;
+    public float minSprintingDistance = 10f;
+
+    [Header("Movement")]
+    public float walkSpeed = 200f;
+    public float sprintSpeedMultiplier = 1.85f;
+
+    [Header("Jump")]
+    public float jumpSpeed = 32f;
+
+    [Range(0, 360)]
+    public float minJumpAngleRequirement = 50f;
+    public Transform groundCheck;
+    public LayerMask groundLayerMask;
+
+    private int currentWaypoint = 0;
+    private bool jumpEnabled = true;
+    private Vector2 playerDirection;
+    private Path path;
+
+    new Rigidbody2D rigidbody;
+    new Collider2D collider;
+    Seeker seeker;
+    EnemyFOV fov;
+
+    public void Start()
+    {
+        rigidbody = GetComponent<Rigidbody2D>();
+        collider = GetComponent<Collider2D>();
+        seeker = GetComponent<Seeker>();
+        fov = GetComponent<EnemyFOV>();
+
+        transform.rotation = new Quaternion(0, initialFaceRight ? 0 : 180, 0, 0);
+
+        InvokeRepeating("UpdatePath", 0f, pathRefreshRate);
+    }
+
+    private void Update()
+    {
+        FlipEnemyEnabled();
+
+        // Jump if the angle is greater than minimum jump angle
+        float angle = Mathf.Atan(playerDirection.y / playerDirection.x) * Mathf.Rad2Deg;
+        if (angle > minJumpAngleRequirement && jumpEnabled)
+        {
+            print(playerDirection);
+            print(angle);
+            Jump();
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (path == null)
+        {
+            return;
+        }
+
+        // If reached the end of the path, stop moving
+        if (currentWaypoint >= path.vectorPath.Count)
+        {
+            DisableMovement();
+            return;
+        }
+
+        // Calculate direction from current position to the player
+        playerDirection = (
+            (Vector2)path.vectorPath[currentWaypoint] - rigidbody.position
+        ).normalized;
+
+        float playerDistance = (target.position - transform.position).magnitude;
+        // If the distance between player and enemy is larger than the stopping distance, approach the player
+        if (playerDistance >= stoppingDistance)
+        {
+            jumpEnabled = true;
+
+            // Move the enemy: if larger than minimum sprinting distance, sprint towards the player
+            rigidbody.velocity = new Vector2(
+                playerDirection.x
+                    * ((playerDistance >= minSprintingDistance) ? sprintSpeedMultiplier : 1)
+                    * walkSpeed
+                    * Time.deltaTime,
+                rigidbody.velocity.y
+            );
+        }
+        else
+        {
+            DisableMovement();
+        }
+
+        /* If the distance between current position and the current waypoint
+         * position is smaller than the next waypoint distance, set the next
+         * waypoint as the new waypoint */
+        float waypointDistance = Vector2.Distance(
+            rigidbody.position,
+            path.vectorPath[currentWaypoint]
+        );
+        if (waypointDistance <= nextWaypointDistance)
+        {
+            currentWaypoint++;
+        }
+    }
+
+    /// <summary> Stop the enemy from moving. </summary>
+    private void DisableMovement()
+    {
+        jumpEnabled = false;
+        rigidbody.velocity = new Vector2(0, rigidbody.velocity.y);
+    }
+
+    /// <summary> If player is seen and the current path has been computed, start calculating the next path. </summary>
+    private void UpdatePath()
+    {
+        if (PlayerFound() && seeker.IsDone())
+        {
+            seeker.StartPath(rigidbody.position, target.position, OnPathCalculationComplete);
+        }
+    }
+
+    /// <summary> If the path has been calculated and is not failed, set this path as the enemy path
+    private void OnPathCalculationComplete(Path p)
+    {
+        if (!p.error)
+        {
+            path = p;
+            currentWaypoint = 0;
+        }
+    }
+
+    /// <summary> Make the enemy look left if moving at -x direction and right at +x direction. </summary>
+    private void FlipEnemyEnabled()
+    {
+        if (rigidbody.velocity.x > 0f)
+        {
+            transform.rotation = new Quaternion(0, 0, 0, 0);
+        }
+        else if (rigidbody.velocity.x < 0f)
+        {
+            transform.rotation = new Quaternion(0, 180, 0, 0);
+        }
+    }
+
+    /// <summary> Check if player is within field of view.</summary>
+    /// <returns> True iff the player can be seen or heard.</returns>
+    private bool PlayerFound()
+    {
+        return fov.playerFound;
+    }
+
+    /// <summary> Make the player jump. </summary>
+    private void Jump()
+    {
+        if (IsGrounded())
+        {
+            rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpSpeed);
+        }
+
+        if (rigidbody.velocity.y > 0f)
+        {
+            rigidbody.velocity = new Vector2(rigidbody.velocity.x, rigidbody.velocity.y * 0.5f);
+        }
+    }
+
+    /// <summary> Check enemy is on the ground before making a jump. </summary>
+    /// <returns> True iff the enemy is on the ground.</returns>
+    private bool IsGrounded()
+    {
+        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayerMask);
+    }
+}
