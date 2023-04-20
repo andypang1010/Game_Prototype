@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // Get user keyboard input
         horizontal = Input.GetAxis("Horizontal");
-        isStealth = Input.GetKey(KeyCode.LeftCommand);
+        isStealth = Input.GetKey(KeyCode.LeftCommand) || Input.GetKey(KeyCode.LeftControl);
         isSprinting = Input.GetKey(KeyCode.LeftShift);
         startJumping = Input.GetButtonDown("Jump");
 

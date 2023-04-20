@@ -54,8 +54,8 @@ public class EnemyAI : MonoBehaviour
         float angle = Mathf.Atan(playerDirection.y / playerDirection.x) * Mathf.Rad2Deg;
         if (angle > minJumpAngleRequirement && jumpEnabled)
         {
-            print(playerDirection);
-            print(angle);
+            Debug.Log(playerDirection);
+            Debug.Log(angle);
             Jump();
         }
     }
@@ -128,7 +128,7 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    /// <summary> If the path has been calculated and is not failed, set this path as the enemy path
+    /// <summary> If the path has been calculated and is not failed, set this path as the enemy path </summary>
     private void OnPathCalculationComplete(Path p)
     {
         if (!p.error)
