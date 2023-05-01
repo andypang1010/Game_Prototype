@@ -52,7 +52,7 @@ public class EnemyAI : MonoBehaviour
 
         // Jump if the angle is greater than minimum jump angle
         float angle = Mathf.Atan(playerDirection.y / playerDirection.x) * Mathf.Rad2Deg;
-        if (angle > minJumpAngleRequirement && jumpEnabled)
+        if ((angle > minJumpAngleRequirement && angle < 180 - minJumpAngleRequirement) && jumpEnabled)
         {
             Debug.Log(playerDirection);
             Debug.Log(angle);
@@ -72,6 +72,18 @@ public class EnemyAI : MonoBehaviour
         {
             DisableMovement();
             return;
+        }
+
+        /* If the distance between current position and the current waypoint
+         * position is smaller than the next waypoint distance, set the next
+         * waypoint as the new waypoint */
+        float waypointDistance = Vector2.Distance(
+            rigidbody.position,
+            path.vectorPath[currentWaypoint]
+        );
+        if (waypointDistance <= nextWaypointDistance)
+        {
+            currentWaypoint = Mathf.Min(currentWaypoint + 1, path.vectorPath.Count - 1);
         }
 
         // Calculate direction from current position to the player
@@ -97,18 +109,6 @@ public class EnemyAI : MonoBehaviour
         else
         {
             DisableMovement();
-        }
-
-        /* If the distance between current position and the current waypoint
-         * position is smaller than the next waypoint distance, set the next
-         * waypoint as the new waypoint */
-        float waypointDistance = Vector2.Distance(
-            rigidbody.position,
-            path.vectorPath[currentWaypoint]
-        );
-        if (waypointDistance <= nextWaypointDistance)
-        {
-            currentWaypoint++;
         }
     }
 
