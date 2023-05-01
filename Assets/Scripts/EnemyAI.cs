@@ -48,7 +48,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
-        FlipEnemyEnabled();
+        UpdateLookDirection();
 
         // Jump if the angle is greater than minimum jump angle
         float angle = Mathf.Atan(playerDirection.y / playerDirection.x) * Mathf.Rad2Deg;
@@ -87,7 +87,7 @@ public class EnemyAI : MonoBehaviour
 
             // Move the enemy: if larger than minimum sprinting distance, sprint towards the player
             rigidbody.velocity = new Vector2(
-                playerDirection.x
+                Mathf.Sign(playerDirection.x)
                     * ((playerDistance >= minSprintingDistance) ? sprintSpeedMultiplier : 1)
                     * walkSpeed
                     * Time.deltaTime,
@@ -134,12 +134,12 @@ public class EnemyAI : MonoBehaviour
         if (!p.error)
         {
             path = p;
-            currentWaypoint = 0;
+            currentWaypoint = 1;
         }
     }
 
     /// <summary> Make the enemy look left if moving at -x direction and right at +x direction. </summary>
-    private void FlipEnemyEnabled()
+    private void UpdateLookDirection()
     {
         if (rigidbody.velocity.x > 0f)
         {

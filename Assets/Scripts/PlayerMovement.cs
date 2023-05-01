@@ -69,16 +69,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rigidbody.velocity = new Vector2(
-            horizontal
-                * Time.deltaTime
-                * (
-                    isStealth
-                        ? stealthSpeedMultiplier * walkSpeed
-                        : (isSprinting ? sprintSpeedMultiplier * walkSpeed : walkSpeed)
-                ),
-            rigidbody.velocity.y
-        );
+        float moveSpeed = walkSpeed;
+        if (isStealth)
+            moveSpeed *= stealthSpeedMultiplier;
+        else if (isSprinting)
+            moveSpeed *= sprintSpeedMultiplier;
+
+        rigidbody.velocity = new Vector2(horizontal * Time.deltaTime * moveSpeed,
+                                         rigidbody.velocity.y);
     }
 
     /// <summary> Make the player crouch down. </summary>
