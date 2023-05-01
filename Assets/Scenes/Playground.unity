@@ -322,6 +322,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8002577550896735403, guid: 9d9807988d0c74033a4055beca974c66, type: 3}
+      propertyPath: data.dataString
+      value: UEsDBBQAAAgIAACAn+t8G3jnYgIAABcFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VE1z2jAQ/SuMzk3HUCikt9QQ0gMJE9rJxRchrbEGWfLog49k+O9dyTZ26PSEePt2973Vyh9EKFsBc9osjeArzYH8GJAHfqCKASdfBh3hCU50p9VGvEPLexPcFYFEI+eVOqERH4Y0q0twRrAHtZOBnCDolci1KRd8B6m2ziKcU2kBQ0a7kK0Q+hiQE/7c3YeUM55G03B6x9N9MrjgkYFyYDpqS2xpNcsrJmlZAQ+SO/IwmTX0yTjyFLppKMnX+1BeSylsI4a4cxXNprSyHq0ggQuK5qKC4LUAsStcENpPfslzC65RZeh5LgzOqK5Kfup6cCW1+1ragUof+syiprrk6p/o3TCGc6PLp7brMAkdXCHY/pWeGbWuN9c+PP8s26sjlXu6lfBWgHrWS6O94hh0xodUb2E07/5ejaUFsH2H11JvQF/9/3aCh0v0fkqlKLdx7uMa2Egdpx3vHgzezC8UHDfDNiUQDSr+WPhNd/0VagKPwliHocalCvK22ptAJYs4s+DGu1QbBRFuRFegqHTnNZZxtxd4E+u1vYk80vBYmuZNrH0DNykR7vhJchNa6+P1smyhjyuwxYt3UijoRIfAM84p1UrV+9WfSZu28SanrJe284J/Xi3C+Wg6ouNZ8n3EJ3me3E3HbDubTGaTb+PZmFJG4u4JhT6pXNdCm/HgramuuMI9CxXDN2WwNLSKu84NPS7Fe6l7Ixcq1xtmANRLXeEqHAw2wVfJF1zggDbgnFDxvslHRqRme+DZtVAWnS5OztCsq5KRShy0C0hG0vjRyEiAr7u8NnAQcAzN22IXcvkLUEsDBBQAAAgIAACAn+voMqxqbQAAAHgAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz0jM011FQSi9KLMgoBooYgjilmSkgdrRSSoqRuVGiiYWBmVGKaVqaga65SXKShamphamxiYVJYmKyUixQfUllQapfYm4qRE9AYklGWmZeSmZeup57UWaKO8hopdhaAFBLAQItABQAAAgIAACAn+t8G3jnYgIAABcFAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAACAn+voMqxqbQAAAHgAAAAJACQAAAAAAAAAAAAAAK8CAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAAZwMAAAAA
+      objectReference: {fileID: 0}
     - target: {fileID: 8002577551852704329, guid: 9d9807988d0c74033a4055beca974c66, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -436,6 +440,10 @@ PrefabInstance:
     - target: {fileID: 7836017310945197326, guid: 6c118226a4ff24377ab3a518fb9e752b, type: 3}
       propertyPath: pathRefreshRate
       value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7836017310945197326, guid: 6c118226a4ff24377ab3a518fb9e752b, type: 3}
+      propertyPath: nextWaypointDistance
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7836017310945197331, guid: 6c118226a4ff24377ab3a518fb9e752b, type: 3}
       propertyPath: m_Name
