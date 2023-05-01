@@ -322,6 +322,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8002577550896735403, guid: 9d9807988d0c74033a4055beca974c66, type: 3}
+      propertyPath: data.dataString
+      value: UEsDBBQAAAgIAACAn+sPZPJnYwIAABYFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VE1z2jAQ/SuMzqVjXFNIb6lDSA9JmJBOLr4IaY01yJJHkvkIw3/vSraxS6cnS2/f7r79kM9EKFsBc9osjeDPmgP5MSL3fE8VA06+jHrCExzpVqu1+ISO9yG4KzyJBs4bdUIjPvFuVpfgjGD3ais9OUKwViLXplzwLaTaOotwTqUFNBntvLdC6DwiR/yM77zLCU/xzJ8+8XQXjS54ZKAcmJ7aETtaw6oVk7SsgHvJPXmetOwkDjSFxbSM6OvMR9dSCttqIe5UhVpTWtkaK0ECFxRrCwJivBYgtoVrL1fn1zy34FpRhp4ehMEWNVHJT930raR21yjbU1n7PPOgqQn5/I91PAnm3Ojyqcs6iXwGVwi2e6MnRq0btHUIP/SyJ6E9Byp3dCPhowD1opdG14qj0Znau9YW4of+ei0sLYDteryRegPW1f+H42u4hNqPqRTlJvQ9aYC11KHbYfRgcDK/UHBYDNuGQNSr+G3hnW6HG9QaHoWxDk1tlcrL2+jaeCpZhJ75amqXaqMgwK3oChSV7rTCMO52gDe2QdobyyP1b6VN3tq6J3DjEuCeH0U3ppU+XIdlC314Blu81k4KBb1ob3jBPqVaqWa/hj3p3Na1ySkbuG1rwf9eLcJ5PItpMo++x3ya59F4lrDNfDqdT78l84RSRsLuCYV1UrlqhLbtwampPrjCPfMR/S9ltDS0CrvODT0sxWepBy0XKtdrZgDUaxPhKhwMJsFXyRdcYIPW4JxQYd7knBGp2Q54dg2UhUoXR2do1kfJSCX22nkkI2n4Z2TEw9ddXhnYCzj45F2wC7n8AVBLAwQUAAAICAAAgJ/r6DKsam0AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNdRUEovSizIKAaKGII4pZkpIHa0UkqKkblRoomFgZlRimlamoGuuUlykoWpqYWpsYmFSWJislIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAAgJ/rD2TyZ2MCAAAWBQAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAgJ/r6DKsam0AAAB4AAAACQAkAAAAAAAAAAAAAACwAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAGgDAAAAAA==
+      objectReference: {fileID: 0}
     - target: {fileID: 8002577551852704329, guid: 9d9807988d0c74033a4055beca974c66, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -433,6 +437,14 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 108455977}
+    - target: {fileID: 7836017310945197326, guid: 6c118226a4ff24377ab3a518fb9e752b, type: 3}
+      propertyPath: pathRefreshRate
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7836017310945197326, guid: 6c118226a4ff24377ab3a518fb9e752b, type: 3}
+      propertyPath: nextWaypointDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7836017310945197331, guid: 6c118226a4ff24377ab3a518fb9e752b, type: 3}
       propertyPath: m_Name
       value: Enemy
