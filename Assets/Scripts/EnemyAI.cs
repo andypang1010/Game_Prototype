@@ -5,26 +5,27 @@ public class EnemyAI : MonoBehaviour
 {
     [Header("Pathfinding")]
     public Transform target;
-
     public bool initialFaceRight = true;
-    public float pathRefreshRate = 0.5f;
-    public float nextWaypointDistance = 0.1f;
     public float stoppingDistance = 2f;
-    public float minSprintingDistance = 10f;
+
+    private float pathRefreshRate = 0.3f;
+    private float nextWaypointDistance = 2f;
 
     [Header("Movement")]
     public float walkSpeed = 200f;
+    private float minSprintingDistance = 5f;
     public float sprintSpeedMultiplier = 1.85f;
 
     [Header("Jump")]
-    public float jumpSpeed = 32f;
+    public float jumpSpeed = 45f;
 
     [Range(0, 360)]
-    public float minJumpAngleRequirement = 50f;
+    public float minJumpAngle = 50f;
     public Transform groundCheck;
     public LayerMask groundLayerMask;
 
     private int currentWaypoint = 0;
+
     private bool jumpEnabled = true;
     private Vector2 playerDirection;
     private Path path;
@@ -50,12 +51,16 @@ public class EnemyAI : MonoBehaviour
     {
         UpdateLookDirection();
 
+        Vector2 nextWaypointDirection = (
+            path.vectorPath[currentWaypoint + 1] - transform.position
+        ).normalized;
+
+        float nextWaypointAngle =
+            Mathf.Atan(nextWaypointDirection.y / nextWaypointDirection.x) * Mathf.Rad2Deg;
+
         // Jump if the angle is greater than minimum jump angle
-        float angle = Mathf.Atan(playerDirection.y / playerDirection.x) * Mathf.Rad2Deg;
-        if ((angle > minJumpAngleRequirement && angle < 180 - minJumpAngleRequirement) && jumpEnabled)
+        if ((nextWaypointAngle > minJumpAngle || nextWaypointAngle < -minJumpAngle) && jumpEnabled)
         {
-            Debug.Log(playerDirection);
-            Debug.Log(angle);
             Jump();
         }
     }

@@ -646,7 +646,7 @@ MonoBehaviour:
   target: {fileID: 0}
   initialFaceRight: 0
   pathRefreshRate: 0.3
-  nextWaypointDistance: 5
+  nextWaypointDistance: 2
   stoppingDistance: 2
   minSprintingDistance: 10
   walkSpeed: 225

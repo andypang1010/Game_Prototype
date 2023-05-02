@@ -15,9 +15,11 @@ public class PlayerMovement : MonoBehaviour
     public float sprintSpeedMultiplier = 1.85f;
 
     [Header("Stealth")]
-    public float stealthSize = 0.6f;
+    public float stealthSize = 0.5f;
     public float stealthSpeedMultiplier = 0.5f;
     public Transform ceilingCheck;
+
+    private bool canCrouch;
 
     [Header("Jump")]
     public float jumpSpeed = 32f;
@@ -52,10 +54,12 @@ public class PlayerMovement : MonoBehaviour
 
         if (startJumping)
         {
+            canCrouch = false;
             Jump();
+            canCrouch = true;
         }
 
-        if (isStealth || HasCeiling())
+        if ((isStealth || HasCeiling()) && canCrouch)
         {
             startJumping = false;
             isStealth = true;
@@ -75,8 +79,10 @@ public class PlayerMovement : MonoBehaviour
         else if (isSprinting)
             moveSpeed *= sprintSpeedMultiplier;
 
-        rigidbody.velocity = new Vector2(horizontal * Time.deltaTime * moveSpeed,
-                                         rigidbody.velocity.y);
+        rigidbody.velocity = new Vector2(
+            horizontal * Time.deltaTime * moveSpeed,
+            rigidbody.velocity.y
+        );
     }
 
     /// <summary> Make the player crouch down. </summary>
