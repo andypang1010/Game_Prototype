@@ -51,8 +51,11 @@ public class EnemyAI : MonoBehaviour
     {
         UpdateLookDirection();
 
+        if (path == null)
+            return;
+
         Vector2 nextWaypointDirection = (
-            path.vectorPath[currentWaypoint + 1] - transform.position
+            path.vectorPath[currentWaypoint] - transform.position
         ).normalized;
 
         float nextWaypointAngle =
@@ -63,6 +66,7 @@ public class EnemyAI : MonoBehaviour
         {
             Jump();
         }
+        Debug.DrawLine(path.vectorPath[currentWaypoint], path.vectorPath[currentWaypoint] + Vector3.up);
     }
 
     private void FixedUpdate()
