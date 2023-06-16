@@ -13,8 +13,12 @@ public class EnemyAI : MonoBehaviour
 
     [Header("Movement")]
     public float walkSpeed = 200f;
+<<<<<<< Updated upstream
     public float climbSpeed = 10f;
     private float minSprintingDistance = 5f;
+=======
+    public float minSprintingDistance = 10f;
+>>>>>>> Stashed changes
     public float sprintSpeedMultiplier = 1.85f;
 
     [Header("Jump")]
@@ -55,7 +59,9 @@ public class EnemyAI : MonoBehaviour
         UpdateLookDirection();
 
         if (path == null)
+        {
             return;
+<<<<<<< Updated upstream
 
         // Find the vector direction of the next waypoint
         nextWaypointDirection = (
@@ -64,13 +70,19 @@ public class EnemyAI : MonoBehaviour
 
         float nextWaypointAngle =
             Mathf.Atan(nextWaypointDirection.y / nextWaypointDirection.x) * Mathf.Rad2Deg;
+=======
+        }
+>>>>>>> Stashed changes
 
         // Jump if the angle is greater than minimum jump angle
-        if ((nextWaypointAngle > minJumpAngle || nextWaypointAngle < -minJumpAngle) && jumpEnabled)
+        if (WaypointIsAbove() && jumpEnabled)
         {
             Jump();
         }
-        Debug.DrawLine(path.vectorPath[currentWaypoint], path.vectorPath[currentWaypoint] + Vector3.up);
+        Debug.DrawLine(
+            path.vectorPath[currentWaypoint],
+            path.vectorPath[currentWaypoint] + Vector3.up
+        );
     }
 
     private void FixedUpdate()
@@ -179,7 +191,25 @@ public class EnemyAI : MonoBehaviour
         return fov.playerFound;
     }
 
+<<<<<<< Updated upstream
     /// <summary> Make the enemy jump. </summary>
+=======
+    /// <summary> Check if the next waypoint is greater than minimum jump angle.</summary>
+    /// <returns> True iff the player can be seen or heard.</returns>
+    private bool WaypointIsAbove()
+    {
+        Vector2 nextWaypointDirection = (
+            path.vectorPath[currentWaypoint] - transform.position
+        ).normalized;
+
+        float nextWaypointAngle =
+            Mathf.Atan(nextWaypointDirection.y / nextWaypointDirection.x) * Mathf.Rad2Deg;
+
+        return ((nextWaypointAngle > minJumpAngle || nextWaypointAngle < -minJumpAngle));
+    }
+
+    /// <summary> Make the player jump. </summary>
+>>>>>>> Stashed changes
     private void Jump()
     {
         if (IsGrounded())
