@@ -104,7 +104,7 @@ NavMeshSettings:
   serializedVersion: 2
   m_ObjectHideFlags: 0
   m_BuildSettings:
-    serializedVersion: 2
+    serializedVersion: 3
     agentTypeID: 0
     agentRadius: 0.5
     agentHeight: 2
@@ -117,7 +117,7 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualTileSize: 0
     tileSize: 256
-    accuratePlacement: 0
+    buildHeightMesh: 0
     maxJobWorkers: 0
     preserveTilesOutsideBounds: 0
     debug:
@@ -138,7 +138,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3372392273426875330, guid: 8442fb97cd8d84bdfb17ecb6918109d2, type: 3}
@@ -194,16 +194,26 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8442fb97cd8d84bdfb17ecb6918109d2, type: 3}
 --- !u!1001 &636758982
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1245259366, guid: 07ef2a28a934b4dc3b4fd0389078fc24, type: 3}
+      propertyPath: m_TagString
+      value: Ladder
+      objectReference: {fileID: 0}
+    - target: {fileID: 1245259368, guid: 07ef2a28a934b4dc3b4fd0389078fc24, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4352482487662321166, guid: 07ef2a28a934b4dc3b4fd0389078fc24, type: 3}
       propertyPath: m_Name
       value: Environment
@@ -253,14 +263,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07ef2a28a934b4dc3b4fd0389078fc24, type: 3}
 --- !u!1001 &789489692
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -7519848237534730691, guid: 91573ee4a4ac84b5ba9aed74f05334d9, type: 3}
@@ -328,19 +340,21 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91573ee4a4ac84b5ba9aed74f05334d9, type: 3}
 --- !u!1001 &1083648235
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 8002577550896735403, guid: 9d9807988d0c74033a4055beca974c66, type: 3}
       propertyPath: data.dataString
-      value: UEsDBBQAAAgIAACYn+v8n36cYwIAABcFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VMty4jAQ/BVK503KEAhkb1lCyB4IVMhWLr4IaYxVyJJLDx5J8e+rkW3ssLUnRE/PTPdo5C8ilC2BOW3mRvCF5kB+9sgj31PFgJMfvZbwAke61WotPqHhfQjuciTRyHmjTuiA9zHN6gKcEexRbSWSkwB6JTJtihnfwlRbZwOcUWkhhIx2mK0C9NUjx/Bz84App3AajPH0GU4PSe8cjgyUA9NSG2JDq1heMUmLEjhKbsmj+5p9178dRaIKdmpOcjvG+lpKYWs1xJ3K6HZd5mAA7XJBg7moAL3mILa5Q6Hd3GWWWXC1KkNPT8KEGVVFyS9dDa6gdldJ21Ppsc0kSqpKLv6J3vRjODO6eGm69hPs4HLBdm/0xKh1nbl24afvsr06ULmjGwkfOahXPTfaKx6CznhM9RYGT+3fi7FpDmzX4pXUK9CX/78d9HCO3o9TKYpNHPuwAtZSx2HHuwcTLuZ3EBw3w9YlAooq/lh4p9vuCtWBZ2GsC6HapUJ5G+0NUskszgzdeDfVRkGEa9ElKCrdaRXKuOsLvIp12l5Fnik+lrp5HWvewFVKhFt+klyFVvpwuSyb68MCbL70TgoFrWgMvIY5TbVS1X51Z9Kkrb3JKOukbb3g31eLcD4YD+hwktwP+CjLkpvxkG0mo9FkdDecDCllJO6eUMEnlatKaD2ecGuqLa7CnmFF/Kb05oaWcde5oYe5+Cx0Z+RCZXrNDIBaVhUuwsGEJuFR8hkXYUBrcE6oeN/kKyVSsx3w9FIojU5nR2do2lZJSSn22iGSkmn8aKQE4csurwzsBRyweVPsTM5/AVBLAwQUAAAICAAAmJ/r6DKsam0AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNdRUEovSizIKAaKGII4pZkpIHa0UkqKkblRoomFgZlRimlamoGuuUlykoWpqYWpsYmFSWJislIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAAmJ/r/J9+nGMCAAAXBQAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAmJ/r6DKsam0AAAB4AAAACQAkAAAAAAAAAAAAAACwAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAGgDAAAAAA==
+      value: UEsDBBQAAAgIAABAIez8n36cYwIAABcFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VMty4jAQ/BVK503KEAhkb1lCyB4IVMhWLr4IaYxVyJJLDx5J8e+rkW3ssLUnRE/PTPdo5C8ilC2BOW3mRvCF5kB+9sgj31PFgJMfvZbwAke61WotPqHhfQjuciTRyHmjTuiA9zHN6gKcEexRbSWSkwB6JTJtihnfwlRbZwOcUWkhhIx2mK0C9NUjx/Bz84App3AajPH0GU4PSe8cjgyUA9NSG2JDq1heMUmLEjhKbsmj+5p9178dRaIKdmpOcjvG+lpKYWs1xJ3K6HZd5mAA7XJBg7moAL3mILa5Q6Hd3GWWWXC1KkNPT8KEGVVFyS9dDa6gdldJ21Ppsc0kSqpKLv6J3vRjODO6eGm69hPs4HLBdm/0xKh1nbl24afvsr06ULmjGwkfOahXPTfaKx6CznhM9RYGT+3fi7FpDmzX4pXUK9CX/78d9HCO3o9TKYpNHPuwAtZSx2HHuwcTLuZ3EBw3w9YlAooq/lh4p9vuCtWBZ2GsC6HapUJ5G+0NUskszgzdeDfVRkGEa9ElKCrdaRXKuOsLvIp12l5Fnik+lrp5HWvewFVKhFt+klyFVvpwuSyb68MCbL70TgoFrWgMvIY5TbVS1X51Z9Kkrb3JKOukbb3g31eLcD4YD+hwktwP+CjLkpvxkG0mo9FkdDecDCllJO6eUMEnlatKaD2ecGuqLa7CnmFF/Kb05oaWcde5oYe5+Cx0Z+RCZXrNDIBaVhUuwsGEJuFR8hkXYUBrcE6oeN/kKyVSsx3w9FIojU5nR2do2lZJSSn22iGSkmn8aKQE4csurwzsBRyweVPsTM5/AVBLAwQUAAAICAAAQCHs6DKsam0AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNdRUEovSizIKAaKGII4pZkpIHa0UkqKkblRoomFgZlRimlamoGuuUlykoWpqYWpsYmFSWJislIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAAQCHs/J9+nGMCAAAXBQAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAQCHs6DKsam0AAAB4AAAACQAkAAAAAAAAAAAAAACwAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAGgDAAAAAA==
       objectReference: {fileID: 0}
     - target: {fileID: 8002577551852704329, guid: 9d9807988d0c74033a4055beca974c66, type: 3}
       propertyPath: m_RootOrder
@@ -391,14 +405,16 @@ PrefabInstance:
       value: Game Manager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d9807988d0c74033a4055beca974c66, type: 3}
 --- !u!1001 &2061103096
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -194866294989865864, guid: 6c118226a4ff24377ab3a518fb9e752b, type: 3}
@@ -486,5 +502,7 @@ PrefabInstance:
       value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c118226a4ff24377ab3a518fb9e752b, type: 3}

@@ -13,6 +13,7 @@ public class EnemyAI : MonoBehaviour
 
     [Header("Movement")]
     public float walkSpeed = 200f;
+    public float climbSpeed = 10f;
     private float minSprintingDistance = 5f;
     public float sprintSpeedMultiplier = 1.85f;
 
@@ -27,8 +28,10 @@ public class EnemyAI : MonoBehaviour
     private int currentWaypoint = 0;
 
     private bool jumpEnabled = true;
+    private bool onLadder;
     private Vector2 playerDirection;
     private Path path;
+    private Vector2 nextWaypointDirection;
 
     new Rigidbody2D rigidbody;
     new Collider2D collider;
@@ -54,7 +57,8 @@ public class EnemyAI : MonoBehaviour
         if (path == null)
             return;
 
-        Vector2 nextWaypointDirection = (
+        // Find the vector direction of the next waypoint
+        nextWaypointDirection = (
             path.vectorPath[currentWaypoint] - transform.position
         ).normalized;
 
@@ -71,6 +75,7 @@ public class EnemyAI : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // If no path exists, do nothing
         if (path == null)
         {
             return;
@@ -101,9 +106,14 @@ public class EnemyAI : MonoBehaviour
         ).normalized;
 
         float playerDistance = (target.position - transform.position).magnitude;
+
         // If the distance between player and enemy is larger than the stopping distance, approach the player
         if (playerDistance >= stoppingDistance)
         {
+            if (onLadder && (nextWaypointDirection == Vector2.up || nextWaypointDirection == Vector2.down)) {
+                ClimbLadder();
+            }
+            else {
             jumpEnabled = true;
 
             // Move the enemy: if larger than minimum sprinting distance, sprint towards the player
@@ -114,6 +124,8 @@ public class EnemyAI : MonoBehaviour
                     * Time.deltaTime,
                 rigidbody.velocity.y
             );
+            }
+
         }
         else
         {
@@ -167,7 +179,7 @@ public class EnemyAI : MonoBehaviour
         return fov.playerFound;
     }
 
-    /// <summary> Make the player jump. </summary>
+    /// <summary> Make the enemy jump. </summary>
     private void Jump()
     {
         if (IsGrounded())
@@ -181,10 +193,37 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    /// <summary> Climb the ladder </summary>
+    private void ClimbLadder() {
+        if (nextWaypointDirection == Vector2.up)
+            {
+                rigidbody.velocity = new Vector2(0, climbSpeed);
+
+            }
+
+            else if (nextWaypointDirection == Vector2.down)
+            {
+                rigidbody.velocity = new Vector2(0, -climbSpeed);
+            }
+    }
+
     /// <summary> Check enemy is on the ground before making a jump. </summary>
     /// <returns> True iff the enemy is on the ground.</returns>
     private bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayerMask);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ladder"))
+        {
+            onLadder = true;   
+        }
+
+        else {
+            onLadder = false;
+        }
+    }
+
 }
