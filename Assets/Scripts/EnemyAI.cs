@@ -13,12 +13,8 @@ public class EnemyAI : MonoBehaviour
 
     [Header("Movement")]
     public float walkSpeed = 200f;
-<<<<<<< Updated upstream
     public float climbSpeed = 10f;
     private float minSprintingDistance = 5f;
-=======
-    public float minSprintingDistance = 10f;
->>>>>>> Stashed changes
     public float sprintSpeedMultiplier = 1.85f;
 
     [Header("Jump")]
@@ -61,18 +57,7 @@ public class EnemyAI : MonoBehaviour
         if (path == null)
         {
             return;
-<<<<<<< Updated upstream
-
-        // Find the vector direction of the next waypoint
-        nextWaypointDirection = (
-            path.vectorPath[currentWaypoint] - transform.position
-        ).normalized;
-
-        float nextWaypointAngle =
-            Mathf.Atan(nextWaypointDirection.y / nextWaypointDirection.x) * Mathf.Rad2Deg;
-=======
         }
->>>>>>> Stashed changes
 
         // Jump if the angle is greater than minimum jump angle
         if (WaypointIsAbove() && jumpEnabled)
@@ -122,22 +107,26 @@ public class EnemyAI : MonoBehaviour
         // If the distance between player and enemy is larger than the stopping distance, approach the player
         if (playerDistance >= stoppingDistance)
         {
-            if (onLadder && (nextWaypointDirection == Vector2.up || nextWaypointDirection == Vector2.down)) {
+            if (
+                onLadder
+                && (nextWaypointDirection == Vector2.up || nextWaypointDirection == Vector2.down)
+            )
+            {
                 ClimbLadder();
             }
-            else {
-            jumpEnabled = true;
+            else
+            {
+                jumpEnabled = true;
 
-            // Move the enemy: if larger than minimum sprinting distance, sprint towards the player
-            rigidbody.velocity = new Vector2(
-                Mathf.Sign(playerDirection.x)
-                    * ((playerDistance >= minSprintingDistance) ? sprintSpeedMultiplier : 1)
-                    * walkSpeed
-                    * Time.deltaTime,
-                rigidbody.velocity.y
-            );
+                // Move the enemy: if larger than minimum sprinting distance, sprint towards the player
+                rigidbody.velocity = new Vector2(
+                    Mathf.Sign(playerDirection.x)
+                        * ((playerDistance >= minSprintingDistance) ? sprintSpeedMultiplier : 1)
+                        * walkSpeed
+                        * Time.deltaTime,
+                    rigidbody.velocity.y
+                );
             }
-
         }
         else
         {
@@ -191,9 +180,6 @@ public class EnemyAI : MonoBehaviour
         return fov.playerFound;
     }
 
-<<<<<<< Updated upstream
-    /// <summary> Make the enemy jump. </summary>
-=======
     /// <summary> Check if the next waypoint is greater than minimum jump angle.</summary>
     /// <returns> True iff the player can be seen or heard.</returns>
     private bool WaypointIsAbove()
@@ -208,8 +194,7 @@ public class EnemyAI : MonoBehaviour
         return ((nextWaypointAngle > minJumpAngle || nextWaypointAngle < -minJumpAngle));
     }
 
-    /// <summary> Make the player jump. </summary>
->>>>>>> Stashed changes
+    /// <summary> Jump </summary>
     private void Jump()
     {
         if (IsGrounded())
@@ -224,17 +209,16 @@ public class EnemyAI : MonoBehaviour
     }
 
     /// <summary> Climb the ladder </summary>
-    private void ClimbLadder() {
+    private void ClimbLadder()
+    {
         if (nextWaypointDirection == Vector2.up)
-            {
-                rigidbody.velocity = new Vector2(0, climbSpeed);
-
-            }
-
-            else if (nextWaypointDirection == Vector2.down)
-            {
-                rigidbody.velocity = new Vector2(0, -climbSpeed);
-            }
+        {
+            rigidbody.velocity = new Vector2(0, climbSpeed);
+        }
+        else if (nextWaypointDirection == Vector2.down)
+        {
+            rigidbody.velocity = new Vector2(0, -climbSpeed);
+        }
     }
 
     /// <summary> Check enemy is on the ground before making a jump. </summary>
@@ -244,16 +228,23 @@ public class EnemyAI : MonoBehaviour
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayerMask);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.gameObject.CompareTag("Ladder"))
+        if (other.gameObject.CompareTag("Ladder"))
         {
-            onLadder = true;   
+            onLadder = true;
         }
-
-        else {
+        else
+        {
             onLadder = false;
         }
     }
 
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Ladder"))
+        {
+            onLadder = false;
+        }
+    }
 }
