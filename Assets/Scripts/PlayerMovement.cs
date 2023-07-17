@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundLayerMask;
 
     [Header("Climb")]
-    public float climbSpeed = 100f;
+    public float climbSpeed = 5f;
 
     [HideInInspector]
     public bool stealthMoving,
