@@ -403,6 +403,9 @@ PrefabInstance:
       addedObject: {fileID: 789489694}
     - targetCorrespondingSourceObject: {fileID: 6044995143269635012, guid: 91573ee4a4ac84b5ba9aed74f05334d9, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 789489715}
+    - targetCorrespondingSourceObject: {fileID: 6044995143269635012, guid: 91573ee4a4ac84b5ba9aed74f05334d9, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 789489701}
     - targetCorrespondingSourceObject: {fileID: 6044995143269635012, guid: 91573ee4a4ac84b5ba9aed74f05334d9, type: 3}
       insertIndex: -1
@@ -498,6 +501,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   climbSpeed: 5
+--- !u!114 &789489715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 789489693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b45613e9ee2b34b6bb6f60a952c7ff85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprintMultiplier: 1.8
 --- !u!1001 &1083648235
 PrefabInstance:
   m_ObjectHideFlags: 0

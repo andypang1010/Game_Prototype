@@ -28,7 +28,6 @@ public class Move : MonoBehaviour
     private void Update()
     {
         direction.x = controller.input.RetrieveMoveInput();
-        print(direction.x);
         desiredVelocity = new Vector2(direction.x, 0f) * Mathf.Max(maxSpeed - ground.Friction, 0f);
         LookDirection();
     }
@@ -55,5 +54,21 @@ public class Move : MonoBehaviour
         {
             transform.rotation = new Quaternion(0, 180, 0, 0);
         }
+    }
+
+    public float GetMaxSpeed() {
+        return maxSpeed;
+    }
+
+    public void SetMaxSpeed(float speed) {
+        maxSpeed = speed;
+    }
+
+        public float GetMaxAcceleration() {
+        return maxAcceleration;
+    }
+
+    public void SetMaxAcceleration(float acceleration) {
+        maxAcceleration = acceleration;
     }
 }
