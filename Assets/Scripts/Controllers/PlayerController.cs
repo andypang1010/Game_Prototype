@@ -3,21 +3,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PlayerController", menuName = "InputController/PlayerController")]
 public class PlayerController : InputController
 {
-    [SerializeField]
-    bool moveEnabled = true;
-
-    [SerializeField]
-    bool sprintEnabled = true;
-
-    [SerializeField]
-    bool crouchEnabled = true;
-
-    [SerializeField]
-    bool jumpEnabled = true;
-
-    [SerializeField]
-    bool climbEnabled = true;
-
     public override bool RetrieveJumpInput()
     {
         return jumpEnabled && Input.GetButtonDown("Jump");
