@@ -2,17 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIController : MonoBehaviour
+[CreateAssetMenu(fileName = "AIController", menuName = "InputController/AIController")]
+public class AIController : InputController
 {
-    // Start is called before the first frame update
-    void Start()
+    public override float RetrieveClimbInput()
     {
-        
+        throw new System.NotImplementedException();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override bool RetrieveCrouchInput()
     {
-        
+        throw new System.NotImplementedException();
+    }
+
+    public override bool RetrieveJumpInput()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override float RetrieveMoveInput()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override bool RetrieveSprintInput()
+    {
+        throw new System.NotImplementedException();
     }
 }

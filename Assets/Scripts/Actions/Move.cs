@@ -1,18 +1,59 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 [RequireComponent(typeof(Controller))]
 public class Move : MonoBehaviour
 {
-    private Collider2D collider;
-    private Rigidbody2D rigidbody;
+    [SerializeField, Range(0, 100f)] private float maxSpeed = 5f;
+    [SerializeField, Range(0, 100f)] private float maxAcceleration = 35f;
+    [SerializeField, Range(0, 100f)] private float maxAirAcceleration = 20f;
+
+    private Vector2 direction, desiredVelocity, currentVelocity;
+    private float maxSpeedChange, acceleration;
+    private bool onGround;
+
+    private Ground ground;
+    private Controller controller;
+    private new Rigidbody2D rigidbody;
 
     private void Awake()
     {
-        collider = GetComponent<CapsuleCollider2D>();
         rigidbody = GetComponent<Rigidbody2D>();
-        rigidbody.freezeRotation = true;
+        ground = GetComponent<Ground>();
+        controller = GetComponent<Controller>();
     }
 
+    private void Update()
+    {
+        direction.x = controller.input.RetrieveMoveInput();
+        print(direction.x);
+        desiredVelocity = new Vector2(direction.x, 0f) * Mathf.Max(maxSpeed - ground.Friction, 0f);
+        LookDirection();
+    }
+
+    private void FixedUpdate()
+    {
+        onGround = ground.OnGround;
+        currentVelocity = rigidbody.velocity;
+
+        acceleration = onGround ? maxAcceleration : maxAirAcceleration;
+        maxSpeedChange = acceleration * Time.deltaTime;
+        currentVelocity.x = Mathf.MoveTowards(currentVelocity.x, desiredVelocity.x, maxSpeedChange);
+
+        rigidbody.velocity = currentVelocity;
+    }
+
+    private void LookDirection()
+    {
+        if (direction.x > 0f)
+        {
+            transform.rotation = new Quaternion(0, 0, 0, 0);
+        }
+        else if (direction.x < 0f)
+        {
+            transform.rotation = new Quaternion(0, 180, 0, 0);
+        }
+    }
 }
