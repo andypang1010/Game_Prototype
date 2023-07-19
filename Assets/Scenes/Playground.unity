@@ -391,7 +391,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6044995143269635009, guid: 91573ee4a4ac84b5ba9aed74f05334d9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -416,6 +417,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6044995143269635012, guid: 91573ee4a4ac84b5ba9aed74f05334d9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 789489708}
+    - targetCorrespondingSourceObject: {fileID: 6044995143269635012, guid: 91573ee4a4ac84b5ba9aed74f05334d9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 789489717}
+    - targetCorrespondingSourceObject: {fileID: 6044995143269635012, guid: 91573ee4a4ac84b5ba9aed74f05334d9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 789489716}
   m_SourcePrefab: {fileID: 100100000, guid: 91573ee4a4ac84b5ba9aed74f05334d9, type: 3}
 --- !u!1 &789489693 stripped
 GameObject:
@@ -474,7 +481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a049a7a8151be44929b14ce803b8b1c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpSpeed: 18
+  jumpSpeed: 12
   maxAirJumps: 0
 --- !u!114 &789489708
 MonoBehaviour:
@@ -500,7 +507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f73a3cb3574034ab8a21032fa1946b72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  climbSpeed: 5
+  climbSpeed: 7
 --- !u!114 &789489715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -514,6 +521,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprintMultiplier: 1.8
+--- !u!114 &789489716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 789489693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf76a94ff60d04c5c8d4b6c7d97d3ee8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isCeiling: 0
+--- !u!114 &789489717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 789489693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e2fe1f9414ec4c83a29c6896b74e3af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crouchMultiplier: 0.5
 --- !u!1001 &1083648235
 PrefabInstance:
   m_ObjectHideFlags: 0

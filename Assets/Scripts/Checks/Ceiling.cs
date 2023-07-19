@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Ceiling : MonoBehaviour
 {
+    public bool isCeiling;
+
     // Start is called before the first frame update
     void Start()
     {

@@ -1,23 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class InputController : ScriptableObject
 {
     [SerializeField]
-    public bool moveEnabled { protected set; get; } = true;
+    public bool moveEnabled { protected get; set; } = true;
 
     [SerializeField]
-    public bool sprintEnabled { protected set; get; } = true;
+    public bool sprintEnabled { protected get; set; } = true;
 
     [SerializeField]
-    public bool crouchEnabled { protected set; get; } = true;
+    public bool crouchEnabled { protected get; set; } = true;
 
     [SerializeField]
-    public bool jumpEnabled { protected set; get; } = true;
+    public bool jumpEnabled { protected get; set; } = true;
 
     [SerializeField]
-    public bool climbEnabled { protected set; get; } = true;
+    public bool climbEnabled { protected get; set; } = true;
 
     public abstract bool RetrieveJumpInput();
 

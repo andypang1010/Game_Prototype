@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Move))]
 public class Sprint : MonoBehaviour
 {
     [SerializeField, Range(1, 2f)] private float sprintMultiplier = 1.8f;
@@ -30,17 +29,14 @@ public class Sprint : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        // If is sprinting, multiply maxSpeed and maxAccelration (in Move) with sprintMultiplier
         if (isSprinting) {
             move.SetMaxSpeed(sprintMaxSpeed);
             move.SetMaxAcceleration(sprintMaxAcceleration);
         }
 
-        // Else, divide sprintMultiplier from maxSpeed and maxAccelration
         else {
             move.SetMaxSpeed(moveMaxSpeed);
             move.SetMaxAcceleration(moveMaxAcceleration);
-
         }
     }
 }
