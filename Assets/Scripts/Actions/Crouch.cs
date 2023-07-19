@@ -5,27 +5,20 @@ using UnityEngine;
 [RequireComponent(typeof(Move))]
 public class Crouch : MonoBehaviour
 {
-    [SerializeField, Range(0, 1f)] private float crouchMultiplier = 0.65f;
+    [SerializeField, Range(0, 1f)] private float crouchSize = 0.5f;
+
     private bool isCrouching = false;
     private bool desireCrouch = false;
-    private float moveMaxSpeed, moveMaxAcceleration, crouchMaxSpeed, crouchMaxAcceleration;
 
     private new Rigidbody2D rigidbody;
     private Controller controller;
     private Ceiling ceiling;
     private Ground ground;
-    private Move move;
 
-    private void Awake() {
+    private void Awake()
+    {
         rigidbody = GetComponent<Rigidbody2D>();
         controller = GetComponent<Controller>();
-        move = GetComponent<Move>();
-
-        moveMaxSpeed = move.GetMaxSpeed();
-        moveMaxAcceleration = move.GetMaxAcceleration();
-
-        crouchMaxSpeed = move.GetMaxSpeed() * crouchMultiplier;
-        crouchMaxAcceleration = move.GetMaxAcceleration() * crouchMultiplier;
     }
 
     private void Update()
@@ -33,18 +26,15 @@ public class Crouch : MonoBehaviour
         isCrouching = controller.input.RetrieveCrouchInput();
     }
 
-    private void FixedUpdate() {
-        if (isCrouching) {
-            print(crouchMaxSpeed);
-            move.SetMaxSpeed(crouchMaxSpeed);
-            move.SetMaxAcceleration(crouchMaxAcceleration);
-            transform.localScale = new Vector3(1, crouchMultiplier, 1);
+    private void FixedUpdate()
+    {
+        if (isCrouching)
+        {
+            transform.localScale = new Vector3(1, crouchSize, 1);
         }
 
-        else {
-            print(moveMaxSpeed);
-            move.SetMaxSpeed(moveMaxSpeed);
-            move.SetMaxAcceleration(moveMaxAcceleration);
+        else
+        {
             transform.localScale = new Vector3(1, 1, 1);
         }
     }
