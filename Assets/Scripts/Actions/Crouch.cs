@@ -5,11 +5,13 @@ using UnityEngine;
 [RequireComponent(typeof(Move))]
 public class Crouch : MonoBehaviour
 {
-    [SerializeField, Range(0, 1f)] private float crouchSize = 0.5f;
+    [SerializeField, Range(0, 1f)] private float crouchMultiplier = 0.5f;
 
     private bool isCrouching = false;
     private bool desireCrouch = false;
+    private Vector3 crouchSize, idleSize;
 
+    private new Collider2D collider;
     private new Rigidbody2D rigidbody;
     private Controller controller;
     private Ceiling ceiling;
@@ -17,8 +19,12 @@ public class Crouch : MonoBehaviour
 
     private void Awake()
     {
+        collider = GetComponent<CapsuleCollider2D>();
         rigidbody = GetComponent<Rigidbody2D>();
         controller = GetComponent<Controller>();
+
+        crouchSize = new Vector3(1, crouchMultiplier, 1);
+        idleSize = new Vector3(1, 1, 1);
     }
 
     private void Update()
@@ -28,14 +34,13 @@ public class Crouch : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isCrouching)
-        {
-            transform.localScale = new Vector3(1, crouchSize, 1);
-        }
+        if (isCrouching) SetSize(crouchSize);
 
-        else
-        {
-            transform.localScale = new Vector3(1, 1, 1);
-        }
+        else SetSize(idleSize);
+    }
+
+    private void SetSize(Vector3 scale) {
+        transform.localScale = scale;
+        collider.transform.localScale = scale;
     }
 }

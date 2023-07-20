@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 137654544}
   - component: {fileID: 137654545}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 542954244}
   - component: {fileID: 542954243}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 701545518}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1468477047}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: CeilingCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,7 +236,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1570534637}
   - component: {fileID: 1570534638}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Eye Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -318,7 +318,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1625962045}
   - component: {fileID: 1625962046}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Eye Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -401,9 +401,17 @@ GameObject:
   - component: {fileID: 6044995143269635008}
   - component: {fileID: 6044995143269635010}
   - component: {fileID: 6044995143269635039}
-  - component: {fileID: 6044995143269635009}
   - component: {fileID: -7519848237534730691}
-  m_Layer: 7
+  - component: {fileID: 5805055469224524703}
+  - component: {fileID: 6254998272018362150}
+  - component: {fileID: 1688028964389275671}
+  - component: {fileID: 8010019994031973218}
+  - component: {fileID: 1960363951526039841}
+  - component: {fileID: 344849759826100879}
+  - component: {fileID: 3764480256214333606}
+  - component: {fileID: 6781458735682412988}
+  - component: {fileID: 1395541224356104924}
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -481,7 +489,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 5
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 2a9f92297bd07434c8fc749f32859635, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -491,31 +499,7 @@ Rigidbody2D:
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
---- !u!114 &6044995143269635009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6044995143269635012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d16aebb2ed6945a6a376569af1256d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkSpeed: 225
-  sprintSpeedMultiplier: 1.85
-  stealthSize: 0.55
-  stealthSpeedMultiplier: 0.5
-  ceilingCheck: {fileID: 1468477047}
-  jumpSpeed: 30
-  groundCheck: {fileID: 701545518}
-  groundLayerMask:
-    serializedVersion: 2
-    m_Bits: 8
-  stealthMoving: 0
-  sprintMoving: 0
+  m_Constraints: 4
 --- !u!212 &-7519848237534730691
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -568,6 +552,125 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5805055469224524703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6044995143269635012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba7a8461c0d2440ff938b82fa009b4af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  input: {fileID: 11400000, guid: ebdfaf0f914314327bea0bc52055401e, type: 2}
+--- !u!114 &6254998272018362150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6044995143269635012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 903e3e46772534d9ab64aaaaa2886d71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkingMaxSpeed: 5
+  walkingMaxAcceleration: 35
+  maxAirAcceleration: 20
+  sprintMultiplier: 1.8
+  crouchMultiplier: 0.65
+--- !u!114 &1688028964389275671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6044995143269635012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b45613e9ee2b34b6bb6f60a952c7ff85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8010019994031973218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6044995143269635012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a6254e2a7ecc4255af7748615156d9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1960363951526039841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6044995143269635012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a049a7a8151be44929b14ce803b8b1c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpSpeed: 12
+  maxAirJumps: 0
+--- !u!114 &344849759826100879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6044995143269635012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f73a3cb3574034ab8a21032fa1946b72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  climbSpeed: 7
+--- !u!114 &3764480256214333606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6044995143269635012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 740d5c1b41337ba409b3489b10fdf1b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6781458735682412988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6044995143269635012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e2fe1f9414ec4c83a29c6896b74e3af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crouchSize: 0.5
+--- !u!114 &1395541224356104924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6044995143269635012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf76a94ff60d04c5c8d4b6c7d97d3ee8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isCeiling: 0
 --- !u!1 &6044995143913134464
 GameObject:
   m_ObjectHideFlags: 0
@@ -578,7 +681,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6044995143913134493}
   - component: {fileID: 6044995143913134494}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: PlayerGFX
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -664,7 +767,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6044995144543917923}
   - component: {fileID: 6044995144543917922}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Right Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -749,7 +852,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6044995144813187713}
   - component: {fileID: 6044995144813187712}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Left Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
