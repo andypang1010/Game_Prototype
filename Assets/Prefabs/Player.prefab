@@ -402,15 +402,9 @@ GameObject:
   - component: {fileID: 6044995143269635010}
   - component: {fileID: 6044995143269635039}
   - component: {fileID: -7519848237534730691}
-  - component: {fileID: 5805055469224524703}
-  - component: {fileID: 6254998272018362150}
-  - component: {fileID: 1688028964389275671}
-  - component: {fileID: 8010019994031973218}
-  - component: {fileID: 1960363951526039841}
-  - component: {fileID: 344849759826100879}
-  - component: {fileID: 3764480256214333606}
-  - component: {fileID: 6781458735682412988}
-  - component: {fileID: 1395541224356104924}
+  - component: {fileID: 1996254141219281978}
+  - component: {fileID: 3753872832110790126}
+  - component: {fileID: 7448989208922831448}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -552,7 +546,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5805055469224524703
+--- !u!114 &1996254141219281978
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -561,11 +555,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6044995143269635012}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba7a8461c0d2440ff938b82fa009b4af, type: 3}
+  m_Script: {fileID: 11500000, guid: 097cc35b389ee574592d8a4fb70468a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: {fileID: 11400000, guid: ebdfaf0f914314327bea0bc52055401e, type: 2}
---- !u!114 &6254998272018362150
+  playerData: {fileID: 0}
+--- !u!114 &3753872832110790126
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -574,15 +568,92 @@ MonoBehaviour:
   m_GameObject: {fileID: 6044995143269635012}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 903e3e46772534d9ab64aaaaa2886d71, type: 3}
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkingMaxSpeed: 5
-  walkingMaxAcceleration: 35
-  maxAirAcceleration: 20
-  sprintMultiplier: 1.8
-  crouchMultiplier: 0.65
---- !u!114 &1688028964389275671
+  m_Actions: {fileID: -944628639613478452, guid: 26773c06d972d48ab9c92af91387b473, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ca16346c-f117-438f-974b-aa11fa078fbf
+    m_ActionName: Gameplay/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 024069d1-ecdd-4f42-ac18-a8cb54426423
+    m_ActionName: Gameplay/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 81eb3e58-1290-4830-b4d1-26147da10790
+    m_ActionName: Gameplay/Crouch[/Keyboard/ctrl]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: eb922029-fda7-4503-a213-1d4c7046570e
+    m_ActionName: Gameplay/Sprint[/Keyboard/shift]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Gameplay
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &7448989208922831448
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -591,86 +662,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6044995143269635012}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b45613e9ee2b34b6bb6f60a952c7ff85, type: 3}
+  m_Script: {fileID: 11500000, guid: 5c43ccdbfb3a74328a8875139f8e0c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8010019994031973218
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6044995143269635012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a6254e2a7ecc4255af7748615156d9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1960363951526039841
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6044995143269635012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a049a7a8151be44929b14ce803b8b1c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jumpSpeed: 12
-  maxAirJumps: 0
---- !u!114 &344849759826100879
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6044995143269635012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f73a3cb3574034ab8a21032fa1946b72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  climbSpeed: 7
---- !u!114 &3764480256214333606
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6044995143269635012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 740d5c1b41337ba409b3489b10fdf1b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6781458735682412988
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6044995143269635012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e2fe1f9414ec4c83a29c6896b74e3af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  crouchSize: 0.5
---- !u!114 &1395541224356104924
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6044995143269635012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf76a94ff60d04c5c8d4b6c7d97d3ee8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isCeiling: 0
 --- !u!1 &6044995143913134464
 GameObject:
   m_ObjectHideFlags: 0
