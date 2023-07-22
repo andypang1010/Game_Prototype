@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class PlayerIdleState : PlayerGroundedState
 {
-    public PlayerIdleState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
-    {
-    }
+    public PlayerIdleState(
+        Player player,
+        PlayerStateMachine stateMachine,
+        PlayerData playerData,
+        string animBoolName
+    )
+        : base(player, stateMachine, playerData, animBoolName) { }
 
     public override void DoChecks()
     {
@@ -28,7 +32,7 @@ public class PlayerIdleState : PlayerGroundedState
     {
         base.LogicUpdate();
 
-        if(xInput != 0)
+        if (xInput != 0)
         {
             stateMachine.ChangeState(player.MoveState);
         }

@@ -9,23 +9,23 @@ public class Player : MonoBehaviour
 
     public PlayerIdleState IdleState { get; private set; }
     public PlayerMoveState MoveState { get; private set; }
+    #endregion
+
+    #region Components
+    public Animator Anim { get; private set; }
+    public PlayerInputHandler InputHandler { get; private set; }
+    public new Rigidbody2D rigidbody { get; private set; }
 
     [SerializeField]
     private PlayerData playerData;
     #endregion
 
-    #region Component Variables
-    public Animator Anim { get; private set; }
-    public PlayerInputHandler InputHandler { get; private set; }
-    public Rigidbody2D RB { get; private set; }
-    #endregion
-
     #region Other Variables
-    public Vector2 CurrentVelocity { get; private set; }
-    public int FacingDirection { get; private set; }
-
     private Vector2 workspace;
+    public Vector2 currentVelocity { get; private set; }
+    public int facingDirection { get; private set; }
     #endregion
+
 
     #region Unity Callback Functions
     private void Awake()
@@ -41,16 +41,16 @@ public class Player : MonoBehaviour
     {
         Anim = GetComponent<Animator>();
         InputHandler = GetComponent<PlayerInputHandler>();
-        RB = GetComponent<Rigidbody2D>();
+        rigidbody = GetComponent<Rigidbody2D>();
 
-        FacingDirection = 1;
+        facingDirection = 1;
 
         StateMachine.Initialize(IdleState);
     }
 
     private void Update()
     {
-        CurrentVelocity = RB.velocity;
+        currentVelocity = rigidbody.velocity;
         StateMachine.CurrentState.LogicUpdate();
     }
 
@@ -63,16 +63,16 @@ public class Player : MonoBehaviour
     #region Set Functions
     public void SetVelocityX(float velocity)
     {
-        workspace.Set(velocity, CurrentVelocity.y);
-        RB.velocity = workspace;
-        CurrentVelocity = workspace;
+        workspace.Set(velocity, currentVelocity.y);
+        rigidbody.velocity = workspace;
+        currentVelocity = workspace;
     }
     #endregion
 
     #region Check Functions
     public void CheckIfShouldFlip(int xInput)
     {
-        if(xInput != 0 && xInput != FacingDirection)
+        if (xInput != 0 && xInput != facingDirection)
         {
             Flip();
         }
@@ -82,7 +82,7 @@ public class Player : MonoBehaviour
     #region Other Functions
     private void Flip()
     {
-        FacingDirection *= -1;
+        facingDirection *= -1;
         transform.Rotate(0f, 180f, 0f);
     }
     #endregion

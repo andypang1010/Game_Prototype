@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class PlayerMoveState : PlayerGroundedState
 {
-    public PlayerMoveState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
-    {
-    }
-
-    public override void DoChecks()
-    {
-        base.DoChecks();
-    }
+    public PlayerMoveState(
+        Player player,
+        PlayerStateMachine stateMachine,
+        PlayerData playerData,
+        string animBoolName
+    )
+        : base(player, stateMachine, playerData, animBoolName) { }
 
     public override void Enter()
     {
@@ -31,7 +30,7 @@ public class PlayerMoveState : PlayerGroundedState
 
         player.SetVelocityX(playerData.movementVelocity * xInput);
 
-        if(xInput == 0)
+        if (xInput == 0)
         {
             stateMachine.ChangeState(player.IdleState);
         }
@@ -40,5 +39,10 @@ public class PlayerMoveState : PlayerGroundedState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
+    }
+
+    public override void DoChecks()
+    {
+        base.DoChecks();
     }
 }
