@@ -21,8 +21,6 @@ public class PlayerState
         this.animBoolName = animBoolName;
     }
 
-
-
     public virtual void Enter()
     {
         DoChecks();

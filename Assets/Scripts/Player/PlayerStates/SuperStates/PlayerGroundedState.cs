@@ -7,6 +7,8 @@ public class PlayerGroundedState : PlayerState
     protected int xInput;
     protected int yInput;
 
+    private bool jumpInput;
+
     public PlayerGroundedState(
         Player player,
         PlayerStateMachine stateMachine,
@@ -36,6 +38,13 @@ public class PlayerGroundedState : PlayerState
 
         xInput = player.InputHandler.normalizedInputX;
         yInput = player.InputHandler.normalizedInputY;
+
+        jumpInput = player.InputHandler.jumpInput;
+
+        if (jumpInput )
+        {
+            stateMachine.ChangeState(player.jumpState);
+        }
     }
 
     public override void PhysicsUpdate()

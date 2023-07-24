@@ -5,13 +5,13 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     #region State Variables
-    public PlayerStateMachine StateMachine { get; private set; }
+    public PlayerStateMachine stateMachine { get; private set; }
 
-    public PlayerIdleState IdleState { get; private set; }
-    public PlayerMoveState MoveState { get; private set; }
-    public PlayerJumpState JumpState { get; private set; }
-    public PlayerInAirState InAirState { get; private set; }
-    public PlayerLandState LandState { get; private set; }
+    public PlayerIdleState idleState { get; private set; }
+    public PlayerMoveState moveState { get; private set; }
+    public PlayerJumpState jumpState { get; private set; }
+    public PlayerInAirState inAirState { get; private set; }
+    public PlayerLandState landState { get; private set; }
 
     #endregion
 
@@ -24,6 +24,13 @@ public class Player : MonoBehaviour
     private PlayerData playerData;
     #endregion
 
+    #region Check Transforms
+
+    [SerializeField]
+    private Transform groundCheck;
+
+    #endregion
+
     #region Other Variables
     private Vector2 workspace;
     public Vector2 currentVelocity { get; private set; }
@@ -33,14 +40,14 @@ public class Player : MonoBehaviour
     #region Unity Callback Functions
     private void Awake()
     {
-        StateMachine = new PlayerStateMachine();
+        stateMachine = new PlayerStateMachine();
 
         // TODO: animation not yet created
-        IdleState = new PlayerIdleState(this, StateMachine, playerData, "idle");
-        MoveState = new PlayerMoveState(this, StateMachine, playerData, "move");
-        JumpState = new PlayerJumpState(this, StateMachine, playerData, "inAir");
-        InAirState = new PlayerInAirState(this, StateMachine, playerData, "inAir");
-        LandState = new PlayerLandState(this, StateMachine, playerData, "land");
+        idleState = new PlayerIdleState(this, stateMachine, playerData, "idle");
+        moveState = new PlayerMoveState(this, stateMachine, playerData, "move");
+        jumpState = new PlayerJumpState(this, stateMachine, playerData, "inAir");
+        inAirState = new PlayerInAirState(this, stateMachine, playerData, "inAir");
+        landState = new PlayerLandState(this, stateMachine, playerData, "land");
     }
 
     private void Start()
@@ -51,18 +58,18 @@ public class Player : MonoBehaviour
 
         facingDirection = 1;
 
-        StateMachine.Initialize(IdleState);
+        stateMachine.Initialize(idleState);
     }
 
     private void Update()
     {
         currentVelocity = rigidbody.velocity;
-        StateMachine.CurrentState.LogicUpdate();
+        stateMachine.CurrentState.LogicUpdate();
     }
 
     private void FixedUpdate()
     {
-        StateMachine.CurrentState.PhysicsUpdate();
+        stateMachine.CurrentState.PhysicsUpdate();
     }
     #endregion
 
@@ -73,9 +80,21 @@ public class Player : MonoBehaviour
         rigidbody.velocity = workspace;
         currentVelocity = workspace;
     }
+
+    public void SetVelocityY(float velocity)
+    {
+        workspace.Set(currentVelocity.x, velocity);
+        rigidbody.velocity = workspace;
+        currentVelocity = workspace;
+    }
     #endregion
 
     #region Check Functions
+    public bool CheckIfGrounded()
+    {
+        return Physics2D.OverlapCircle(groundCheck.position, playerData.groundCheckRadius, playerData.ground);
+    }
+
     public void CheckIfShouldFlip(int xInput)
     {
         if (xInput != 0 && xInput != facingDirection)

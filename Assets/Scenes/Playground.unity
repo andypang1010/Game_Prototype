@@ -133,6 +133,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6044995143913134493, guid: 91573ee4a4ac84b5ba9aed74f05334d9, type: 3}
   m_PrefabInstance: {fileID: 789489692}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &341578182 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 701545518, guid: 91573ee4a4ac84b5ba9aed74f05334d9, type: 3}
+  m_PrefabInstance: {fileID: 789489692}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &436420095
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -145,6 +150,14 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 108455977}
+    - target: {fileID: 3372392273426875331, guid: 8442fb97cd8d84bdfb17ecb6918109d2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3372392273426875331, guid: 8442fb97cd8d84bdfb17ecb6918109d2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5999999
+      objectReference: {fileID: 0}
     - target: {fileID: 3372392274286261990, guid: 8442fb97cd8d84bdfb17ecb6918109d2, type: 3}
       propertyPath: m_Name
       value: Camera
@@ -192,6 +205,14 @@ PrefabInstance:
     - target: {fileID: 3372392274286261991, guid: 8442fb97cd8d84bdfb17ecb6918109d2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3372392274495712452, guid: 8442fb97cd8d84bdfb17ecb6918109d2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3372392274495712452, guid: 8442fb97cd8d84bdfb17ecb6918109d2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5999999
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -291,6 +312,10 @@ PrefabInstance:
       propertyPath: playerData
       value: 
       objectReference: {fileID: 11400000, guid: 5a80a0f38abd3406489d91177aff9871, type: 2}
+    - target: {fileID: 1996254141219281978, guid: 91573ee4a4ac84b5ba9aed74f05334d9, type: 3}
+      propertyPath: groundCheck
+      value: 
+      objectReference: {fileID: 341578182}
     - target: {fileID: 3753872832110790126, guid: 91573ee4a4ac84b5ba9aed74f05334d9, type: 3}
       propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 0
@@ -666,3 +691,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c118226a4ff24377ab3a518fb9e752b, type: 3}
+--- !u!1660057539 &9223372036854775807
+SceneRoots:
+  m_ObjectHideFlags: 0
+  m_Roots:
+  - {fileID: 1083648235}
+  - {fileID: 436420095}
+  - {fileID: 636758982}
+  - {fileID: 789489692}
+  - {fileID: 2061103096}
