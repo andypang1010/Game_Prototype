@@ -9,6 +9,10 @@ public class Player : MonoBehaviour
 
     public PlayerIdleState IdleState { get; private set; }
     public PlayerMoveState MoveState { get; private set; }
+    public PlayerJumpState JumpState { get; private set; }
+    public PlayerInAirState InAirState { get; private set; }
+    public PlayerLandState LandState { get; private set; }
+
     #endregion
 
     #region Components
@@ -26,7 +30,6 @@ public class Player : MonoBehaviour
     public int facingDirection { get; private set; }
     #endregion
 
-
     #region Unity Callback Functions
     private void Awake()
     {
@@ -35,6 +38,9 @@ public class Player : MonoBehaviour
         // TODO: animation not yet created
         IdleState = new PlayerIdleState(this, StateMachine, playerData, "idle");
         MoveState = new PlayerMoveState(this, StateMachine, playerData, "move");
+        JumpState = new PlayerJumpState(this, StateMachine, playerData, "inAir");
+        InAirState = new PlayerInAirState(this, StateMachine, playerData, "inAir");
+        LandState = new PlayerLandState(this, StateMachine, playerData, "land");
     }
 
     private void Start()

@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class PlayerJumpState : PlayerAbilityState
 {
-    // Start is called before the first frame update
-    void Start()
+    public PlayerJumpState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
