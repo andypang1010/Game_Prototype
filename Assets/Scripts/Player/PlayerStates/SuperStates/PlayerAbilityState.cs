@@ -36,9 +36,11 @@ public class PlayerAbilityState : PlayerState
     {
         base.LogicUpdate();
 
+        Debug.Log(isGrounded);
+
         if (isAbilityDone)
         {
-            if (isGrounded && player.currentVelocity.y < 0.01f)
+            if (isGrounded && player.currentVelocity.y < 0.001f)
             {
                 stateMachine.ChangeState(player.idleState);
             }

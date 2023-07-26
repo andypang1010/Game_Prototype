@@ -8,6 +8,16 @@ public class PlayerInputHandler : MonoBehaviour
     public int normalizedInputY { get; private set; }
     public bool jumpInput { get; private set; }
 
+    [SerializeField]
+    private float inputHoldTime = 0.2f;
+
+    private float jumpInputStartTime;
+
+    private void Update()
+    {
+        CheckJumpInputHoldTime();
+    }
+
     public void OnMoveInput(InputAction.CallbackContext context)
     {
         rawMovementInput = context.ReadValue<Vector2>();
@@ -20,10 +30,19 @@ public class PlayerInputHandler : MonoBehaviour
         if(context.started)
         {
             jumpInput = true;
+            jumpInputStartTime = Time.time;
         }
     }
 
     public void UseJumpInput() => jumpInput = false;
+
+    private void CheckJumpInputHoldTime()
+    {
+        if(Time.time >= jumpInputStartTime + inputHoldTime)
+        {
+            jumpInput = false;
+        }
+    }
 
     public void OnCrouchInput(InputAction.CallbackContext context)
     {

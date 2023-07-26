@@ -64,12 +64,12 @@ public class Player : MonoBehaviour
     private void Update()
     {
         currentVelocity = rigidbody.velocity;
-        stateMachine.CurrentState.LogicUpdate();
+        stateMachine.currentState.LogicUpdate();
     }
 
     private void FixedUpdate()
     {
-        stateMachine.CurrentState.PhysicsUpdate();
+        stateMachine.currentState.PhysicsUpdate();
     }
     #endregion
 
@@ -105,6 +105,11 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Other Functions
+
+    private void AnimationTrigger() => stateMachine.currentState.AnimationTrigger();
+
+    private void AnimationFinishedTrigger() => stateMachine.currentState.AnimationFinishTrigger();
+
     private void Flip()
     {
         facingDirection *= -1;
