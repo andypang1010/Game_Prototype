@@ -7,10 +7,13 @@ public class PlayerInAirState : PlayerState
     private int xInput;
     private bool isGrounded;
 
-    public PlayerInAirState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
-    {
-
-    }
+    public PlayerInAirState(
+        Player player,
+        PlayerStateMachine stateMachine,
+        PlayerData playerData,
+        string animBoolName
+    )
+        : base(player, stateMachine, playerData, animBoolName) { }
 
     public override void DoChecks()
     {
@@ -42,13 +45,11 @@ public class PlayerInAirState : PlayerState
         else
         {
             player.CheckIfShouldFlip(xInput);
-            player.SetVelocityX(playerData.movementVelocity * xInput);
+            player.SetVelocityX(Mathf.Abs(player.currentVelocity.x) * xInput);
 
             player.Anim.SetFloat("yVelocity", player.currentVelocity.y);
             player.Anim.SetFloat("xVelocity", Mathf.Abs(player.currentVelocity.x));
         }
-
-
     }
 
     public override void PhysicsUpdate()

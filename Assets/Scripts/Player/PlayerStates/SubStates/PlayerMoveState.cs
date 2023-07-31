@@ -12,6 +12,13 @@ public class PlayerMoveState : PlayerGroundedState
     )
         : base(player, stateMachine, playerData, animBoolName) { }
 
+    private Vector2 desiredVelocity,
+        currentVelocity;
+    private float maxSpeed,
+        maxAcceleration,
+        maxSpeedChange,
+        acceleration;
+
     public override void Enter()
     {
         base.Enter();
@@ -26,13 +33,30 @@ public class PlayerMoveState : PlayerGroundedState
     {
         base.LogicUpdate();
 
+        maxSpeed = playerData.walkingMaxSpeed;
+        maxAcceleration = playerData.walkingMaxAcceleration;
+
         player.CheckIfShouldFlip(xInput);
+        desiredVelocity = new Vector2(xInput, 0f) * maxSpeed;
 
-        player.SetVelocityX(playerData.movementVelocity * xInput);
+        currentVelocity = player.currentVelocity;
+        acceleration = maxAcceleration;
+        maxSpeedChange = acceleration * Time.deltaTime;
 
-        if (xInput == 0)
+        player.SetVelocityX(
+            Mathf.MoveTowards(currentVelocity.x, desiredVelocity.x, maxSpeedChange)
+        );
+
+        if (!isExitingState)
         {
-            stateMachine.ChangeState(player.idleState);
+            if (xInput == 0)
+            {
+                stateMachine.ChangeState(player.idleState);
+            }
+            else if (yInput == -1)
+            {
+                stateMachine.ChangeState(player.crouchMoveState);
+            }
         }
     }
 

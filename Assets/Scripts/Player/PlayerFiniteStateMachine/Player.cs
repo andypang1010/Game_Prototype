@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     public PlayerJumpState jumpState { get; private set; }
     public PlayerInAirState inAirState { get; private set; }
     public PlayerLandState landState { get; private set; }
+    public PlayerCrouchIdleState crouchIdleState { get; private set; }
+    public PlayerCrouchMoveState crouchMoveState { get; private set; }
 
     #endregion
 
@@ -48,6 +50,8 @@ public class Player : MonoBehaviour
         jumpState = new PlayerJumpState(this, stateMachine, playerData, "inAir");
         inAirState = new PlayerInAirState(this, stateMachine, playerData, "inAir");
         landState = new PlayerLandState(this, stateMachine, playerData, "land");
+        crouchIdleState = new PlayerCrouchIdleState(this, stateMachine, playerData, "crouchIdle");
+        crouchMoveState = new PlayerCrouchMoveState(this, stateMachine, playerData, "crouchMove");
     }
 
     private void Start()
@@ -74,6 +78,13 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Set Functions
+    public void SetVelocityZero()
+    {
+        workspace.Set(0, 0);
+        rigidbody.velocity = workspace;
+        currentVelocity = workspace;
+    }
+
     public void SetVelocityX(float velocity)
     {
         workspace.Set(velocity, currentVelocity.y);
@@ -92,7 +103,11 @@ public class Player : MonoBehaviour
     #region Check Functions
     public bool CheckIfGrounded()
     {
-        return Physics2D.OverlapCircle(groundCheck.position, playerData.groundCheckRadius, playerData.ground);
+        return Physics2D.OverlapCircle(
+            groundCheck.position,
+            playerData.groundCheckRadius,
+            playerData.ground
+        );
     }
 
     public void CheckIfShouldFlip(int xInput)

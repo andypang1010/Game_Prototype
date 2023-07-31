@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerIdleState : PlayerGroundedState
+public class PlayerCrouchIdleState : PlayerGroundedState
 {
-    public PlayerIdleState(
+    public PlayerCrouchIdleState(
         Player player,
         PlayerStateMachine stateMachine,
         PlayerData playerData,
@@ -12,20 +12,11 @@ public class PlayerIdleState : PlayerGroundedState
     )
         : base(player, stateMachine, playerData, animBoolName) { }
 
-    public override void DoChecks()
-    {
-        base.DoChecks();
-    }
-
     public override void Enter()
     {
         base.Enter();
-        player.SetVelocityX(0f);
-    }
 
-    public override void Exit()
-    {
-        base.Exit();
+        player.SetVelocityZero();
     }
 
     public override void LogicUpdate()
@@ -36,17 +27,12 @@ public class PlayerIdleState : PlayerGroundedState
         {
             if (xInput != 0)
             {
-                stateMachine.ChangeState(player.moveState);
+                stateMachine.ChangeState(player.crouchMoveState);
             }
-            else if (yInput == -1)
+            else if (yInput == 0)
             {
-                stateMachine.ChangeState(player.crouchIdleState);
+                stateMachine.ChangeState(player.idleState);
             }
         }
-    }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
     }
 }
