@@ -20,16 +20,20 @@ public class PlayerCrouchMoveState : PlayerGroundedState
         {
             player.CheckIfShouldFlip(xInput);
             player.SetVelocityX(
-                player.CalculateVelocityX(xInput, playerData.crouchMultiplier * playerData.walkingMaxSpeed, playerData.crouchMultiplier * playerData.walkingMaxAcceleration)
+                player.CalculateVelocityX(
+                    xInput,
+                    playerData.crouchMaxSpeed,
+                    playerData.crouchMaxAcceleration
+                )
             );
 
             if (xInput == 0)
             {
-                stateMachine.ChangeState(player.CrouchIdleState);
+                stateMachine.ChangeState(player.crouchIdleState);
             }
             else if (yInput == 0)
             {
-                stateMachine.ChangeState(player.MoveState);
+                stateMachine.ChangeState(player.moveState);
             }
         }
     }

@@ -5,22 +5,20 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     #region State Variables
-    public PlayerStateMachine StateMachine { get; private set; }
+    public PlayerStateMachine stateMachine { get; private set; }
 
-    public PlayerIdleState IdleState { get; private set; }
-    public PlayerMoveState MoveState { get; private set; }
-    public PlayerJumpState JumpState { get; private set; }
-    public PlayerInAirState InAirState { get; private set; }
-    public PlayerLandState LandState { get; private set; }
-    public PlayerCrouchIdleState CrouchIdleState { get; private set; }
-    public PlayerCrouchMoveState CrouchMoveState { get; private set; }
+    public PlayerIdleState idleState { get; private set; }
+    public PlayerMoveState moveState { get; private set; }
+    public PlayerJumpState jumpState { get; private set; }
+    public PlayerInAirState inAirState { get; private set; }
+    public PlayerLandState landState { get; private set; }
 
     #endregion
 
     #region Components
     public Animator Anim { get; private set; }
     public PlayerInputHandler InputHandler { get; private set; }
-    public new Rigidbody2D Rigidbody { get; private set; }
+    public new Rigidbody2D rigidbody { get; private set; }
 
     [SerializeField]
     private readonly PlayerData playerData;
@@ -42,38 +40,36 @@ public class Player : MonoBehaviour
     #region Unity Callback Functions
     private void Awake()
     {
-        StateMachine = new PlayerStateMachine();
+        stateMachine = new PlayerStateMachine();
 
         // TODO: animation not yet created
-        IdleState = new PlayerIdleState(this, StateMachine, playerData, "idle");
-        MoveState = new PlayerMoveState(this, StateMachine, playerData, "move");
-        JumpState = new PlayerJumpState(this, StateMachine, playerData, "inAir");
-        InAirState = new PlayerInAirState(this, StateMachine, playerData, "inAir");
-        LandState = new PlayerLandState(this, StateMachine, playerData, "land");
-        CrouchIdleState = new PlayerCrouchIdleState(this, StateMachine, playerData, "crouchIdle");
-        CrouchMoveState = new PlayerCrouchMoveState(this, StateMachine, playerData, "crouchMove");
+        idleState = new PlayerIdleState(this, stateMachine, playerData, "idle");
+        moveState = new PlayerMoveState(this, stateMachine, playerData, "move");
+        jumpState = new PlayerJumpState(this, stateMachine, playerData, "inAir");
+        inAirState = new PlayerInAirState(this, stateMachine, playerData, "inAir");
+        landState = new PlayerLandState(this, stateMachine, playerData, "land");
     }
 
     private void Start()
     {
-        Anim = GetComponent<Animator>();
-        InputHandler = GetComponent<PlayerInputHandler>();
-        Rigidbody = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+        inputHandler = GetComponent<PlayerInputHandler>();
+        rigidbody = GetComponent<Rigidbody2D>();
 
         FacingDirection = 1;
 
-        StateMachine.Initialize(IdleState);
+        stateMachine.Initialize(idleState);
     }
 
     private void Update()
     {
-        CurrentVelocity = Rigidbody.velocity;
-        StateMachine.CurrentState.LogicUpdate();
+        CurrentVelocity = rigidbody.velocity;
+        stateMachine.CurrentState.LogicUpdate();
     }
 
     private void FixedUpdate()
     {
-        StateMachine.CurrentState.PhysicsUpdate();
+        stateMachine.CurrentState.PhysicsUpdate();
     }
     #endregion
 
@@ -81,21 +77,21 @@ public class Player : MonoBehaviour
     public void SetVelocityZero()
     {
         workspace.Set(0, 0);
-        Rigidbody.velocity = workspace;
+        rigidbody.velocity = workspace;
         CurrentVelocity = workspace;
     }
 
     public void SetVelocityX(float velocity)
     {
         workspace.Set(velocity, CurrentVelocity.y);
-        Rigidbody.velocity = workspace;
+        rigidbody.velocity = workspace;
         CurrentVelocity = workspace;
     }
 
     public void SetVelocityY(float velocity)
     {
         workspace.Set(CurrentVelocity.x, velocity);
-        Rigidbody.velocity = workspace;
+        rigidbody.velocity = workspace;
         CurrentVelocity = workspace;
     }
     #endregion
@@ -121,9 +117,9 @@ public class Player : MonoBehaviour
 
     #region Other Functions
 
-    private void AnimationTrigger() => StateMachine.CurrentState.AnimationTrigger();
+    private void AnimationTrigger() => stateMachine.CurrentState.AnimationTrigger();
 
-    private void AnimationFinishedTrigger() => StateMachine.CurrentState.AnimationFinishTrigger();
+    private void AnimationFinishedTrigger() => stateMachine.CurrentState.AnimationFinishTrigger();
 
     private void Flip()
     {
@@ -131,11 +127,12 @@ public class Player : MonoBehaviour
         transform.Rotate(0f, 180f, 0f);
     }
 
-    public float CalculateVelocityX(int xInput, float maxSpeed, float maxAcceleration) {
+    public float CalculateVelocityX(int xInput, float maxSpeed, float maxAcceleration)
+    {
         Vector2 desiredVelocity = new Vector2(xInput, 0f) * maxSpeed;
         float maxSpeedChange = maxAcceleration * Time.deltaTime;
         return Mathf.MoveTowards(CurrentVelocity.x, desiredVelocity.x, maxSpeedChange);
     }
-    
+
     #endregion
 }

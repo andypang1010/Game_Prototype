@@ -6,17 +6,19 @@ using UnityEngine;
 public class PlayerData : ScriptableObject
 {
     [Header("Move State")]
-    public float walkingMaxSpeed = 5f;
-    public float walkingMaxAcceleration = 35f;
+    public float moveMaxSpeed = 10f;
+    public float moveMaxAcceleration = 35f;
 
     [Header("Jump State")]
     public float jumpVelocity = 15f;
 
     [Header("Crouch State")]
-    public float crouchMultiplier = 0.65f;
+    public float crouchMaxSpeed = 6f;
+    public float crouchMaxAcceleration = 20f;
 
     [Header("Sprint State")]
-    public float sprintMultiplier = 1.8f;
+    public float sprintMaxSpeed = 15f;
+    public float sprintMaxAcceleration = 45f;
 
     [Header("Check Variables")]
     public float groundCheckRadius;

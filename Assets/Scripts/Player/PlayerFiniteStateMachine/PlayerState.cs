@@ -8,7 +8,6 @@ public class PlayerState
     protected PlayerStateMachine stateMachine;
     protected PlayerData playerData;
 
-    protected bool isExitingState;
     protected bool isAnimationFinished;
 
     protected float startTime;
@@ -16,12 +15,7 @@ public class PlayerState
     // for animation
     private string animBoolName;
 
-    public PlayerState(
-        Player player,
-        PlayerStateMachine stateMachine,
-        PlayerData playerData,
-        string animBoolName
-    )
+    public PlayerState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName)
     {
         this.player = player;
         this.stateMachine = stateMachine;
@@ -35,16 +29,17 @@ public class PlayerState
         player.Anim.SetBool(animBoolName, true);
         startTime = Time.time;
         isAnimationFinished = false;
-        isExitingState = false;
     }
 
     public virtual void Exit()
     {
         player.Anim.SetBool(animBoolName, false);
-        isExitingState = false;
     }
 
-    public virtual void LogicUpdate() { }
+    public virtual void LogicUpdate()
+    {
+
+    }
 
     public virtual void PhysicsUpdate()
     {

@@ -28,18 +28,22 @@ public class PlayerMoveState : PlayerGroundedState
 
         player.CheckIfShouldFlip(xInput);
         player.SetVelocityX(
-            player.CalculateVelocityX(xInput, playerData.walkingMaxSpeed, playerData.walkingMaxAcceleration)
+            player.CalculateVelocityX(
+                xInput,
+                playerData.moveMaxSpeed,
+                playerData.moveMaxAcceleration
+            )
         );
 
         if (!isExitingState)
         {
             if (xInput == 0)
             {
-                stateMachine.ChangeState(player.IdleState);
+                stateMachine.ChangeState(player.idleState);
             }
             else if (yInput == -1)
             {
-                stateMachine.ChangeState(player.CrouchMoveState);
+                stateMachine.ChangeState(player.crouchMoveState);
             }
         }
     }
