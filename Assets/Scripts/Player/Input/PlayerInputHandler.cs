@@ -3,13 +3,15 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : MonoBehaviour
 {
-    public Vector2 rawMovementInput { get; private set; }
-    public int normalizedInputX { get; private set; }
-    public int normalizedInputY { get; private set; }
-    public bool jumpInput { get; private set; }
+    public Vector2 RawMovementInput { get; private set; }
+    public int NormalizedInputX { get; private set; }
+    public int NormalizedInputY { get; private set; }
+    public bool JumpInput { get; private set; }
+    public bool CrouchInput { get; private set; }
+    public bool SprintInput { get; private set; }
 
     [SerializeField]
-    private float inputHoldTime = 0.2f;
+    private readonly float inputHoldTime = 0.2f;
 
     private float jumpInputStartTime;
 
@@ -20,37 +22,48 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void OnMoveInput(InputAction.CallbackContext context)
     {
-        rawMovementInput = context.ReadValue<Vector2>();
-        normalizedInputX = (int)(rawMovementInput * Vector2.right).normalized.x;
-        normalizedInputY = (int)(rawMovementInput * Vector2.up).normalized.y;
+        RawMovementInput = context.ReadValue<Vector2>();
+        NormalizedInputX = (int)(RawMovementInput * Vector2.right).normalized.x;
+        NormalizedInputY = (int)(RawMovementInput * Vector2.up).normalized.y;
     }
 
     public void OnJumpInput(InputAction.CallbackContext context)
     {
         if(context.started)
         {
-            jumpInput = true;
+            JumpInput = true;
             jumpInputStartTime = Time.time;
         }
     }
 
-    public void UseJumpInput() => jumpInput = false;
+    public void UseJumpInput() => JumpInput = false;
 
     private void CheckJumpInputHoldTime()
     {
         if(Time.time >= jumpInputStartTime + inputHoldTime)
         {
-            jumpInput = false;
+            JumpInput = false;
         }
     }
 
     public void OnCrouchInput(InputAction.CallbackContext context)
     {
-        print("Crouch input");
+        if (context.started) {
+            CrouchInput = true;
+        }
+
+        else if (context.canceled) {
+            CrouchInput = false;
+        }
     }
 
     public void OnSprintInput(InputAction.CallbackContext context)
     {
-        print("Sprint input");
+        if (context.started) {
+           SprintInput = true;
+        }
+        else if (context.canceled) {
+            SprintInput = false;
+        }
     }
 }

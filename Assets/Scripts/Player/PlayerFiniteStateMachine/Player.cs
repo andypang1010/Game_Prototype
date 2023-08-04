@@ -5,25 +5,25 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     #region State Variables
-    public PlayerStateMachine stateMachine { get; private set; }
+    public PlayerStateMachine StateMachine { get; private set; }
 
-    public PlayerIdleState idleState { get; private set; }
-    public PlayerMoveState moveState { get; private set; }
-    public PlayerJumpState jumpState { get; private set; }
-    public PlayerInAirState inAirState { get; private set; }
-    public PlayerLandState landState { get; private set; }
-    public PlayerCrouchIdleState crouchIdleState { get; private set; }
-    public PlayerCrouchMoveState crouchMoveState { get; private set; }
+    public PlayerIdleState IdleState { get; private set; }
+    public PlayerMoveState MoveState { get; private set; }
+    public PlayerJumpState JumpState { get; private set; }
+    public PlayerInAirState InAirState { get; private set; }
+    public PlayerLandState LandState { get; private set; }
+    public PlayerCrouchIdleState CrouchIdleState { get; private set; }
+    public PlayerCrouchMoveState CrouchMoveState { get; private set; }
 
     #endregion
 
     #region Components
     public Animator Anim { get; private set; }
     public PlayerInputHandler InputHandler { get; private set; }
-    public new Rigidbody2D rigidbody { get; private set; }
+    public new Rigidbody2D Rigidbody { get; private set; }
 
     [SerializeField]
-    private PlayerData playerData;
+    private readonly PlayerData playerData;
     #endregion
 
     #region Check Transforms
@@ -35,45 +35,45 @@ public class Player : MonoBehaviour
 
     #region Other Variables
     private Vector2 workspace;
-    public Vector2 currentVelocity { get; private set; }
-    public int facingDirection { get; private set; }
+    public Vector2 CurrentVelocity { get; private set; }
+    public int FacingDirection { get; private set; }
     #endregion
 
     #region Unity Callback Functions
     private void Awake()
     {
-        stateMachine = new PlayerStateMachine();
+        StateMachine = new PlayerStateMachine();
 
         // TODO: animation not yet created
-        idleState = new PlayerIdleState(this, stateMachine, playerData, "idle");
-        moveState = new PlayerMoveState(this, stateMachine, playerData, "move");
-        jumpState = new PlayerJumpState(this, stateMachine, playerData, "inAir");
-        inAirState = new PlayerInAirState(this, stateMachine, playerData, "inAir");
-        landState = new PlayerLandState(this, stateMachine, playerData, "land");
-        crouchIdleState = new PlayerCrouchIdleState(this, stateMachine, playerData, "crouchIdle");
-        crouchMoveState = new PlayerCrouchMoveState(this, stateMachine, playerData, "crouchMove");
+        IdleState = new PlayerIdleState(this, StateMachine, playerData, "idle");
+        MoveState = new PlayerMoveState(this, StateMachine, playerData, "move");
+        JumpState = new PlayerJumpState(this, StateMachine, playerData, "inAir");
+        InAirState = new PlayerInAirState(this, StateMachine, playerData, "inAir");
+        LandState = new PlayerLandState(this, StateMachine, playerData, "land");
+        CrouchIdleState = new PlayerCrouchIdleState(this, StateMachine, playerData, "crouchIdle");
+        CrouchMoveState = new PlayerCrouchMoveState(this, StateMachine, playerData, "crouchMove");
     }
 
     private void Start()
     {
         Anim = GetComponent<Animator>();
         InputHandler = GetComponent<PlayerInputHandler>();
-        rigidbody = GetComponent<Rigidbody2D>();
+        Rigidbody = GetComponent<Rigidbody2D>();
 
-        facingDirection = 1;
+        FacingDirection = 1;
 
-        stateMachine.Initialize(idleState);
+        StateMachine.Initialize(IdleState);
     }
 
     private void Update()
     {
-        currentVelocity = rigidbody.velocity;
-        stateMachine.currentState.LogicUpdate();
+        CurrentVelocity = Rigidbody.velocity;
+        StateMachine.CurrentState.LogicUpdate();
     }
 
     private void FixedUpdate()
     {
-        stateMachine.currentState.PhysicsUpdate();
+        StateMachine.CurrentState.PhysicsUpdate();
     }
     #endregion
 
@@ -81,22 +81,22 @@ public class Player : MonoBehaviour
     public void SetVelocityZero()
     {
         workspace.Set(0, 0);
-        rigidbody.velocity = workspace;
-        currentVelocity = workspace;
+        Rigidbody.velocity = workspace;
+        CurrentVelocity = workspace;
     }
 
     public void SetVelocityX(float velocity)
     {
-        workspace.Set(velocity, currentVelocity.y);
-        rigidbody.velocity = workspace;
-        currentVelocity = workspace;
+        workspace.Set(velocity, CurrentVelocity.y);
+        Rigidbody.velocity = workspace;
+        CurrentVelocity = workspace;
     }
 
     public void SetVelocityY(float velocity)
     {
-        workspace.Set(currentVelocity.x, velocity);
-        rigidbody.velocity = workspace;
-        currentVelocity = workspace;
+        workspace.Set(CurrentVelocity.x, velocity);
+        Rigidbody.velocity = workspace;
+        CurrentVelocity = workspace;
     }
     #endregion
 
@@ -112,7 +112,7 @@ public class Player : MonoBehaviour
 
     public void CheckIfShouldFlip(int xInput)
     {
-        if (xInput != 0 && xInput != facingDirection)
+        if (xInput != 0 && xInput != FacingDirection)
         {
             Flip();
         }
@@ -121,14 +121,21 @@ public class Player : MonoBehaviour
 
     #region Other Functions
 
-    private void AnimationTrigger() => stateMachine.currentState.AnimationTrigger();
+    private void AnimationTrigger() => StateMachine.CurrentState.AnimationTrigger();
 
-    private void AnimationFinishedTrigger() => stateMachine.currentState.AnimationFinishTrigger();
+    private void AnimationFinishedTrigger() => StateMachine.CurrentState.AnimationFinishTrigger();
 
     private void Flip()
     {
-        facingDirection *= -1;
+        FacingDirection *= -1;
         transform.Rotate(0f, 180f, 0f);
     }
+
+    public float CalculateVelocityX(int xInput, float maxSpeed, float maxAcceleration) {
+        Vector2 desiredVelocity = new Vector2(xInput, 0f) * maxSpeed;
+        float maxSpeedChange = maxAcceleration * Time.deltaTime;
+        return Mathf.MoveTowards(CurrentVelocity.x, desiredVelocity.x, maxSpeedChange);
+    }
+    
     #endregion
 }

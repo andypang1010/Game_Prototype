@@ -18,17 +18,18 @@ public class PlayerCrouchMoveState : PlayerGroundedState
 
         if (!isExitingState)
         {
-            Debug.Log("calculated: " + player.currentVelocity.x * playerData.crouchMultiplier);
-            player.SetVelocityX(player.currentVelocity.x * playerData.crouchMultiplier);
             player.CheckIfShouldFlip(xInput);
+            player.SetVelocityX(
+                player.CalculateVelocityX(xInput, playerData.crouchMultiplier * playerData.walkingMaxSpeed, playerData.crouchMultiplier * playerData.walkingMaxAcceleration)
+            );
 
             if (xInput == 0)
             {
-                stateMachine.ChangeState(player.crouchIdleState);
+                stateMachine.ChangeState(player.CrouchIdleState);
             }
             else if (yInput == 0)
             {
-                stateMachine.ChangeState(player.moveState);
+                stateMachine.ChangeState(player.MoveState);
             }
         }
     }

@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class PlayerGroundedState : PlayerState
 {
-    protected int xInput;
-    protected int yInput;
+    protected int xInput, yInput;
 
-    private bool jumpInput;
+    private bool jumpInput, crouchInput, sprintInput;
 
     public PlayerGroundedState(
         Player player,
@@ -36,16 +35,31 @@ public class PlayerGroundedState : PlayerState
     {
         base.LogicUpdate();
 
-        xInput = player.InputHandler.normalizedInputX;
-        yInput = player.InputHandler.normalizedInputY;
+        xInput = player.InputHandler.NormalizedInputX;
+        yInput = player.InputHandler.NormalizedInputY;
 
-        jumpInput = player.InputHandler.jumpInput;
+        jumpInput = player.InputHandler.JumpInput;
+        crouchInput = player.InputHandler.CrouchInput;
+        sprintInput = player.InputHandler.SprintInput;
 
         if (jumpInput)
         {
             player.InputHandler.UseJumpInput();
-            stateMachine.ChangeState(player.jumpState);
+            stateMachine.ChangeState(player.JumpState);
         }
+
+        else if (crouchInput) {
+            if (xInput == 0) {
+                stateMachine.ChangeState(player.CrouchIdleState);
+            }
+            else {
+                stateMachine.ChangeState(player.CrouchMoveState);
+            }
+        }
+
+        // else if (sprintInput && xInput != 0) {
+        //     stateMachine.ChangeState(player.sprintState);
+        // }
     }
 
     public override void PhysicsUpdate()

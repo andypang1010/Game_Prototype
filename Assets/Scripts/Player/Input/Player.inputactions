@@ -134,7 +134,7 @@
                 {
                     "name": "",
                     "id": "9a9263d1-6e6c-4236-83e0-e67386add4b7",
-                    "path": "<Keyboard>/ctrl",
+                    "path": "<Keyboard>/leftMeta",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -156,7 +156,7 @@
                 {
                     "name": "",
                     "id": "a51fe585-788d-41c2-a3ef-d3c1d6e0a742",
-                    "path": "<Keyboard>/shift",
+                    "path": "<Keyboard>/leftShift",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",

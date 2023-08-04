@@ -6,7 +6,6 @@ using UnityEngine;
 public class PlayerData : ScriptableObject
 {
     [Header("Move State")]
-    public float movementVelocity;
     public float walkingMaxSpeed = 5f;
     public float walkingMaxAcceleration = 35f;
 

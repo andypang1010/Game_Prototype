@@ -36,19 +36,19 @@ public class PlayerInAirState : PlayerState
     {
         base.LogicUpdate();
 
-        xInput = player.InputHandler.normalizedInputX;
+        xInput = player.InputHandler.NormalizedInputX;
 
-        if (isGrounded && player.currentVelocity.y < 0.01f)
+        if (isGrounded && player.CurrentVelocity.y < 0.01f)
         {
-            stateMachine.ChangeState(player.landState);
+            stateMachine.ChangeState(player.LandState);
         }
         else
         {
             player.CheckIfShouldFlip(xInput);
-            player.SetVelocityX(Mathf.Abs(player.currentVelocity.x) * xInput);
+            player.SetVelocityX(Mathf.Abs(player.CurrentVelocity.x) * xInput);
 
-            player.Anim.SetFloat("yVelocity", player.currentVelocity.y);
-            player.Anim.SetFloat("xVelocity", Mathf.Abs(player.currentVelocity.x));
+            player.Anim.SetFloat("yVelocity", player.CurrentVelocity.y);
+            player.Anim.SetFloat("xVelocity", Mathf.Abs(player.CurrentVelocity.x));
         }
     }
 
