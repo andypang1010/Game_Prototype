@@ -12,12 +12,14 @@ public class Player : MonoBehaviour
     public PlayerJumpState jumpState { get; private set; }
     public PlayerInAirState inAirState { get; private set; }
     public PlayerLandState landState { get; private set; }
+    public PlayerCrouchIdleState crouchIdleState { get; private set; }
+    public PlayerCrouchMoveState crouchMoveState { get; private set; }
 
     #endregion
 
     #region Components
-    public Animator Anim { get; private set; }
-    public PlayerInputHandler InputHandler { get; private set; }
+    public Animator anim { get; private set; }
+    public PlayerInputHandler inputHandler { get; private set; }
     public new Rigidbody2D rigidbody { get; private set; }
 
     [SerializeField]

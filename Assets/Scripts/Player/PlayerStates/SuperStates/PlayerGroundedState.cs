@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class PlayerGroundedState : PlayerState
 {
-    protected int xInput, yInput;
+    protected int xInput,
+        yInput;
 
-    private bool jumpInput, crouchInput, sprintInput;
+    private bool jumpInput,
+        crouchInput,
+        sprintInput;
 
     public PlayerGroundedState(
         Player player,
@@ -35,24 +38,26 @@ public class PlayerGroundedState : PlayerState
     {
         base.LogicUpdate();
 
-        xInput = player.InputHandler.NormalizedInputX;
-        yInput = player.InputHandler.NormalizedInputY;
+        xInput = player.inputHandler.NormalizedInputX;
+        yInput = player.inputHandler.NormalizedInputY;
 
-        jumpInput = player.InputHandler.JumpInput;
-        crouchInput = player.InputHandler.CrouchInput;
-        sprintInput = player.InputHandler.SprintInput;
+        jumpInput = player.inputHandler.JumpInput;
+        crouchInput = player.inputHandler.CrouchInput;
+        sprintInput = player.inputHandler.SprintInput;
 
         if (jumpInput)
         {
-            player.InputHandler.UseJumpInput();
+            player.inputHandler.UseJumpInput();
             stateMachine.ChangeState(player.JumpState);
         }
-
-        else if (crouchInput) {
-            if (xInput == 0) {
+        else if (crouchInput)
+        {
+            if (xInput == 0)
+            {
                 stateMachine.ChangeState(player.CrouchIdleState);
             }
-            else {
+            else
+            {
                 stateMachine.ChangeState(player.CrouchMoveState);
             }
         }
