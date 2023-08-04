@@ -48,17 +48,17 @@ public class PlayerGroundedState : PlayerState
         if (jumpInput)
         {
             player.inputHandler.UseJumpInput();
-            stateMachine.ChangeState(player.JumpState);
+            stateMachine.ChangeState(player.jumpState);
         }
         else if (crouchInput)
         {
             if (xInput == 0)
             {
-                stateMachine.ChangeState(player.CrouchIdleState);
+                stateMachine.ChangeState(player.crouchIdleState);
             }
             else
             {
-                stateMachine.ChangeState(player.CrouchMoveState);
+                stateMachine.ChangeState(player.crouchMoveState);
             }
         }
 
