@@ -7,8 +7,14 @@ public class PlayerGroundedState : PlayerState
     protected int xInput;
     protected int yInput;
 
+<<<<<<< Updated upstream
     private bool jumpInput;
     private bool isGrounded;
+=======
+    protected bool jumpInput,
+        crouchInput,
+        sprintInput;
+>>>>>>> Stashed changes
 
     public PlayerGroundedState(
         Player player,
@@ -48,6 +54,7 @@ public class PlayerGroundedState : PlayerState
 
         if (jumpInput && player.jumpState.CanJump())
         {
+<<<<<<< Updated upstream
             player.InputHandler.UseJumpInput();
             stateMachine.ChangeState(player.jumpState);
         }
@@ -56,6 +63,11 @@ public class PlayerGroundedState : PlayerState
             player.inAirState.StartCoyoteTime();
             stateMachine.ChangeState(player.inAirState);
         }
+=======
+            player.inputHandler.UseJumpInput();
+            stateMachine.ChangeState(player.jumpState);
+        }
+>>>>>>> Stashed changes
     }
 
     public override void PhysicsUpdate()

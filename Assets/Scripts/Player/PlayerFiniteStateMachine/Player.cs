@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
     #region Check Transforms
 
     [SerializeField]
-    private Transform groundCheck;
+    public Transform groundCheck;
 
     #endregion
 
@@ -48,6 +48,8 @@ public class Player : MonoBehaviour
         jumpState = new PlayerJumpState(this, stateMachine, playerData, "inAir");
         inAirState = new PlayerInAirState(this, stateMachine, playerData, "inAir");
         landState = new PlayerLandState(this, stateMachine, playerData, "land");
+        crouchIdleState = new PlayerCrouchIdleState(this, stateMachine, playerData, "crouchIdle");
+        crouchMoveState = new PlayerCrouchMoveState(this, stateMachine, playerData, "crouchMove");
     }
 
     private void Start()

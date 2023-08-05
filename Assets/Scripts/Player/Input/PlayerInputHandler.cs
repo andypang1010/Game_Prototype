@@ -28,7 +28,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void OnJumpInput(InputAction.CallbackContext context)
     {
-        if(context.started)
+        if (context.started)
         {
             jumpInput = true;
             jumpInputStop = false;
@@ -45,7 +45,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void CheckJumpInputHoldTime()
     {
-        if(Time.time >= jumpInputStartTime + inputHoldTime)
+        if (Time.time >= jumpInputStartTime + inputHoldTime)
         {
             jumpInput = false;
         }
@@ -53,11 +53,33 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void OnCrouchInput(InputAction.CallbackContext context)
     {
+<<<<<<< Updated upstream
         print("Crouch input");
+=======
+        if (context.started)
+        {
+            CrouchInput = true;
+        }
+        else if (context.canceled)
+        {
+            CrouchInput = false;
+        }
+>>>>>>> Stashed changes
     }
 
     public void OnSprintInput(InputAction.CallbackContext context)
     {
+<<<<<<< Updated upstream
         print("Sprint input");
+=======
+        if (context.started)
+        {
+            SprintInput = true;
+        }
+        else if (context.canceled)
+        {
+            SprintInput = false;
+        }
+>>>>>>> Stashed changes
     }
 }

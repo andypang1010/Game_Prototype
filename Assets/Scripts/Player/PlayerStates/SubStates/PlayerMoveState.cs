@@ -32,7 +32,18 @@ public class PlayerMoveState : PlayerGroundedState
 
         if (xInput == 0)
         {
+<<<<<<< Updated upstream
             stateMachine.ChangeState(player.idleState);
+=======
+            if (xInput == 0)
+            {
+                stateMachine.ChangeState(player.idleState);
+            }
+            else if (crouchInput)
+            {
+                stateMachine.ChangeState(player.crouchMoveState);
+            }
+>>>>>>> Stashed changes
         }
     }
 

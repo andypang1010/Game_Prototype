@@ -20,7 +20,7 @@ public class PlayerIdleState : PlayerGroundedState
     public override void Enter()
     {
         base.Enter();
-        player.SetVelocityX(0f);
+        player.SetVelocityZero();
     }
 
     public override void Exit()
@@ -34,7 +34,18 @@ public class PlayerIdleState : PlayerGroundedState
 
         if (xInput != 0)
         {
+<<<<<<< Updated upstream
             stateMachine.ChangeState(player.moveState);
+=======
+            if (xInput != 0)
+            {
+                stateMachine.ChangeState(player.moveState);
+            }
+            else if (crouchInput)
+            {
+                stateMachine.ChangeState(player.crouchIdleState);
+            }
+>>>>>>> Stashed changes
         }
     }
 

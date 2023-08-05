@@ -56,6 +56,7 @@ public class PlayerInAirState : PlayerState
         else
         {
             player.CheckIfShouldFlip(xInput);
+<<<<<<< Updated upstream
             player.SetVelocityX(playerData.movementVelocity * xInput);
 
             player.Anim.SetFloat("yVelocity", player.currentVelocity.y);
@@ -78,6 +79,12 @@ public class PlayerInAirState : PlayerState
             {
                 isJumping = false;
             }
+=======
+            player.SetVelocityX(player.CurrentVelocity.x);
+
+            player.anim.SetFloat("xVelocity", Mathf.Abs(player.CurrentVelocity.x));
+            player.anim.SetFloat("yVelocity", player.CurrentVelocity.y);
+>>>>>>> Stashed changes
         }
     }
 
