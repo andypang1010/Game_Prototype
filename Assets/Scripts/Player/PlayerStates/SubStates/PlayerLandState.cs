@@ -11,8 +11,6 @@ public class PlayerLandState : PlayerGroundedState
 
     public override void LogicUpdate()
     {
-        base.LogicUpdate();
-
         if (xInput != 0)
         {
             stateMachine.ChangeState(player.moveState);
@@ -21,5 +19,7 @@ public class PlayerLandState : PlayerGroundedState
         {
             stateMachine.ChangeState(player.idleState);
         }
+
+        base.LogicUpdate();
     }
 }

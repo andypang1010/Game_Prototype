@@ -16,6 +16,9 @@ public class PlayerJumpState : PlayerAbilityState
     {
         base.Enter();
 
+        //float slope = (playerData.sprintJumpVelocity - playerData.jumpVelocity) / (playerData.sprintMaxSpeed - playerData.moveMaxSpeed);
+        //float curJumpVelocity = 
+        //player.SetVelocityY(player.currentVelocity.x > playerData.moveMaxSpeed ? playerData.sprintJumpVelocity : playerData.jumpVelocity);
         player.SetVelocityY(playerData.jumpVelocity);
         isAbilityDone = true;
         amountOfJumpsLeft--;

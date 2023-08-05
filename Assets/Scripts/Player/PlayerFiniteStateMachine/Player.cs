@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     public PlayerLandState landState { get; private set; }
     public PlayerCrouchIdleState crouchIdleState { get; private set; }
     public PlayerCrouchMoveState crouchMoveState { get; private set; }
+    public PlayerSprintState sprintState { get; private set; }
 
     #endregion
 
@@ -52,6 +53,7 @@ public class Player : MonoBehaviour
         landState = new PlayerLandState(this, stateMachine, playerData, "land");
         crouchIdleState = new PlayerCrouchIdleState(this, stateMachine, playerData, "crouchIdle");
         crouchMoveState = new PlayerCrouchMoveState(this, stateMachine, playerData, "crouchMove");
+        sprintState = new PlayerSprintState(this, stateMachine, playerData, "sprint");
     }
 
     private void Start()

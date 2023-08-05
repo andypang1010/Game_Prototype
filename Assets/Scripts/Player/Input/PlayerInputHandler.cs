@@ -68,13 +68,23 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void OnSprintInput(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.control.device.name == "Keyboard")
         {
-            sprintInput = true;
+            if (context.started)
+            {
+                sprintInput = true;
+            }
+            else if (context.canceled)
+            {
+                sprintInput = false;
+            }
         }
-        else if (context.canceled)
+        else
         {
-            sprintInput = false;
+            if (context.started)
+            {
+                sprintInput = !sprintInput;
+            }
         }
     }
 }

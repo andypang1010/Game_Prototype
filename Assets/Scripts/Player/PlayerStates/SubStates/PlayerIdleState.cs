@@ -32,7 +32,7 @@ public class PlayerIdleState : PlayerGroundedState
     {
         base.LogicUpdate();
 
-        if (xInput != 0)
+        if (!isExitingState)
         {
             if (xInput != 0)
             {

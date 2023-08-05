@@ -45,6 +45,10 @@ public class PlayerMoveState : PlayerGroundedState
             {
                 stateMachine.ChangeState(player.crouchMoveState);
             }
+            else if (sprintInput)
+            {
+                stateMachine.ChangeState(player.sprintState);
+            }
         }
     }
 

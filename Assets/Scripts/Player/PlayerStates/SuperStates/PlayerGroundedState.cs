@@ -50,7 +50,7 @@ public class PlayerGroundedState : PlayerState
         crouchInput = player.inputHandler.crouchInput;
         sprintInput = player.inputHandler.sprintInput;
 
-        if (jumpInput && player.jumpState.CanJump())
+        if (jumpInput && player.jumpState.CanJump() && !crouchInput)
         {
             player.inputHandler.UseJumpInput();
             stateMachine.ChangeState(player.jumpState);
@@ -60,21 +60,6 @@ public class PlayerGroundedState : PlayerState
             player.inAirState.StartCoyoteTime();
             stateMachine.ChangeState(player.inAirState);
         }
-        else if (crouchInput)
-        {
-            if (xInput == 0)
-            {
-                stateMachine.ChangeState(player.crouchIdleState);
-            }
-            else
-            {
-                stateMachine.ChangeState(player.crouchMoveState);
-            }
-        }
-
-        // else if (sprintInput && xInput != 0) {
-        //     stateMachine.ChangeState(player.sprintState);
-        // }
     }
 
     public override void PhysicsUpdate()

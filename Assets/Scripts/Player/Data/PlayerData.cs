@@ -11,6 +11,7 @@ public class PlayerData : ScriptableObject
 
     [Header("Jump State")]
     public float jumpVelocity = 15f;
+    public float sprintJumpVelocity = 25f;
     public int amountOfJumps = 1;
 
     [Header("In Air State")]
