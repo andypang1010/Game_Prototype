@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
 
     #region Other Variables
     private Vector2 workspace;
-    public Vector2 CurrentVelocity { get; private set; }
+    public Vector2 currentVelocity { get; private set; }
     public int FacingDirection { get; private set; }
     #endregion
 
@@ -65,13 +65,13 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        CurrentVelocity = rigidbody.velocity;
-        stateMachine.CurrentState.LogicUpdate();
+        currentVelocity = rigidbody.velocity;
+        stateMachine.currentState.LogicUpdate();
     }
 
     private void FixedUpdate()
     {
-        stateMachine.CurrentState.PhysicsUpdate();
+        stateMachine.currentState.PhysicsUpdate();
     }
     #endregion
 
@@ -80,21 +80,21 @@ public class Player : MonoBehaviour
     {
         workspace.Set(0, 0);
         rigidbody.velocity = workspace;
-        CurrentVelocity = workspace;
+        currentVelocity = workspace;
     }
 
     public void SetVelocityX(float velocity)
     {
-        workspace.Set(velocity, CurrentVelocity.y);
+        workspace.Set(velocity, currentVelocity.y);
         rigidbody.velocity = workspace;
-        CurrentVelocity = workspace;
+        currentVelocity = workspace;
     }
 
     public void SetVelocityY(float velocity)
     {
-        workspace.Set(CurrentVelocity.x, velocity);
+        workspace.Set(currentVelocity.x, velocity);
         rigidbody.velocity = workspace;
-        CurrentVelocity = workspace;
+        currentVelocity = workspace;
     }
     #endregion
 
@@ -119,9 +119,9 @@ public class Player : MonoBehaviour
 
     #region Other Functions
 
-    private void AnimationTrigger() => stateMachine.CurrentState.AnimationTrigger();
+    private void AnimationTrigger() => stateMachine.currentState.AnimationTrigger();
 
-    private void AnimationFinishedTrigger() => stateMachine.CurrentState.AnimationFinishTrigger();
+    private void AnimationFinishedTrigger() => stateMachine.currentState.AnimationFinishTrigger();
 
     private void Flip()
     {
@@ -133,7 +133,7 @@ public class Player : MonoBehaviour
     {
         Vector2 desiredVelocity = new Vector2(xInput, 0f) * maxSpeed;
         float maxSpeedChange = maxAcceleration * Time.deltaTime;
-        return Mathf.MoveTowards(CurrentVelocity.x, desiredVelocity.x, maxSpeedChange);
+        return Mathf.MoveTowards(currentVelocity.x, desiredVelocity.x, maxSpeedChange);
     }
 
     #endregion

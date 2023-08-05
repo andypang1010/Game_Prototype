@@ -43,12 +43,12 @@ public class PlayerGroundedState : PlayerState
     {
         base.LogicUpdate();
 
-        xInput = player.inputHandler.NormalizedInputX;
-        yInput = player.inputHandler.NormalizedInputY;
+        xInput = player.inputHandler.normalizedInputX;
+        yInput = player.inputHandler.normalizedInputY;
 
-        jumpInput = player.inputHandler.JumpInput;
-        crouchInput = player.inputHandler.CrouchInput;
-        sprintInput = player.inputHandler.SprintInput;
+        jumpInput = player.inputHandler.jumpInput;
+        crouchInput = player.inputHandler.crouchInput;
+        sprintInput = player.inputHandler.sprintInput;
 
         if (jumpInput && player.jumpState.CanJump())
         {

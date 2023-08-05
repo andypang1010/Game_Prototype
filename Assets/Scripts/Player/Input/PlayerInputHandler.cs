@@ -23,14 +23,14 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void OnMoveInput(InputAction.CallbackContext context)
     {
-        RawMovementInput = context.ReadValue<Vector2>();
-        NormalizedInputX = (int)(RawMovementInput * Vector2.right).normalized.x;
-        NormalizedInputY = (int)(RawMovementInput * Vector2.up).normalized.y;
+        rawMovementInput = context.ReadValue<Vector2>();
+        normalizedInputX = (int)(rawMovementInput * Vector2.right).normalized.x;
+        normalizedInputY = (int)(rawMovementInput * Vector2.up).normalized.y;
     }
 
     public void OnJumpInput(InputAction.CallbackContext context)
     {
-        if(context.started)
+        if (context.started)
         {
             jumpInput = true;
             jumpInputStop = false;
@@ -43,34 +43,38 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
-    public void UseJumpInput() => JumpInput = false;
+    public void UseJumpInput() => jumpInput = false;
 
     private void CheckJumpInputHoldTime()
     {
-        if(Time.time >= jumpInputStartTime + inputHoldTime)
+        if (Time.time >= jumpInputStartTime + inputHoldTime)
         {
-            JumpInput = false;
+            jumpInput = false;
         }
     }
 
     public void OnCrouchInput(InputAction.CallbackContext context)
     {
-        if (context.started) {
-            CrouchInput = true;
+        if (context.started)
+        {
+            crouchInput = true;
         }
 
-        else if (context.canceled) {
-            CrouchInput = false;
+        else if (context.canceled)
+        {
+            crouchInput = false;
         }
     }
 
     public void OnSprintInput(InputAction.CallbackContext context)
     {
-        if (context.started) {
-           SprintInput = true;
+        if (context.started)
+        {
+            sprintInput = true;
         }
-        else if (context.canceled) {
-            SprintInput = false;
+        else if (context.canceled)
+        {
+            sprintInput = false;
         }
     }
 }

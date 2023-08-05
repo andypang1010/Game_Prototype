@@ -43,8 +43,8 @@ public class PlayerInAirState : PlayerState
         CheckCoyoteTime();
 
         xInput = player.inputHandler.normalizedInputX;
-        jumpInput = player.InputHandler.jumpInput;
-        jumpInputStop = player.InputHandler.jumpInputStop;
+        jumpInput = player.inputHandler.jumpInput;
+        jumpInputStop = player.inputHandler.jumpInputStop;
 
         CheckJumpMultiplier();
 
@@ -59,10 +59,10 @@ public class PlayerInAirState : PlayerState
         else
         {
             player.CheckIfShouldFlip(xInput);
-            player.SetVelocityX(Mathf.Abs(player.CurrentVelocity.x) * xInput);
+            player.SetVelocityX(Mathf.Abs(player.currentVelocity.x) * xInput);
 
-            player.anim.SetFloat("yVelocity", player.CurrentVelocity.y);
-            player.anim.SetFloat("xVelocity", Mathf.Abs(player.CurrentVelocity.x));
+            player.anim.SetFloat("yVelocity", player.currentVelocity.y);
+            player.anim.SetFloat("xVelocity", Mathf.Abs(player.currentVelocity.x));
         }
     }
 
