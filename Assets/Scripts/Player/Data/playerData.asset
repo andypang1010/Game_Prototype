@@ -12,16 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c632de00836fecd49a0b860eced8a036, type: 3}
   m_Name: playerData
   m_EditorClassIdentifier: 
-  moveMaxSpeed: 10
-  moveMaxAcceleration: 35
+  moveMaxSpeed: 6
+  moveMaxAcceleration: 6
   jumpVelocity: 15
+  sprintJumpVelocity: 22
   amountOfJumps: 1
   coyoteTime: 0.2
   variableJumpHeightMultiplier: 0.5
-  crouchMaxSpeed: 6
-  crouchMaxAcceleration: 20
-  sprintMaxSpeed: 15
-  sprintMaxAcceleration: 45
+  crouchMaxSpeed: 4
+  crouchMaxAcceleration: 4
+  sprintMaxSpeed: 12
+  sprintMaxAcceleration: 10
   groundCheckRadius: 0.3
   ground:
     serializedVersion: 2
