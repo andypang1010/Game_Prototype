@@ -10,6 +10,7 @@ public class PlayerGroundedState : PlayerState
     private bool jumpInput,
         crouchInput,
         sprintInput;
+    private bool isGrounded;
 
     public PlayerGroundedState(
         Player player,
@@ -22,11 +23,15 @@ public class PlayerGroundedState : PlayerState
     public override void DoChecks()
     {
         base.DoChecks();
+
+        isGrounded = player.CheckIfGrounded();
     }
 
     public override void Enter()
     {
         base.Enter();
+
+        player.jumpState.ResetAmountOfJumpsLeft();
     }
 
     public override void Exit()
@@ -45,10 +50,15 @@ public class PlayerGroundedState : PlayerState
         crouchInput = player.inputHandler.CrouchInput;
         sprintInput = player.inputHandler.SprintInput;
 
-        if (jumpInput)
+        if (jumpInput && player.jumpState.CanJump())
         {
             player.inputHandler.UseJumpInput();
             stateMachine.ChangeState(player.jumpState);
+        }
+        else if (!isGrounded)
+        {
+            player.inAirState.StartCoyoteTime();
+            stateMachine.ChangeState(player.inAirState);
         }
         else if (crouchInput)
         {

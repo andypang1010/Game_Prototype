@@ -3,12 +3,13 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : MonoBehaviour
 {
-    public Vector2 RawMovementInput { get; private set; }
-    public int NormalizedInputX { get; private set; }
-    public int NormalizedInputY { get; private set; }
-    public bool JumpInput { get; private set; }
-    public bool CrouchInput { get; private set; }
-    public bool SprintInput { get; private set; }
+    public Vector2 rawMovementInput { get; private set; }
+    public int normalizedInputX { get; private set; }
+    public int normalizedInputY { get; private set; }
+    public bool jumpInput { get; private set; }
+    public bool jumpInputStop { get; private set; }
+    public bool crouchInput { get; private set; }
+    public bool sprintInput { get; private set; }
 
     [SerializeField]
     private readonly float inputHoldTime = 0.2f;
@@ -31,8 +32,14 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if(context.started)
         {
-            JumpInput = true;
+            jumpInput = true;
+            jumpInputStop = false;
             jumpInputStartTime = Time.time;
+        }
+
+        if (context.canceled)
+        {
+            jumpInputStop = true;
         }
     }
 
