@@ -7,10 +7,10 @@ public class PlayerGroundedState : PlayerState
     protected int xInput,
         yInput;
 
-    private bool jumpInput,
+    protected bool jumpInput,
         crouchInput,
         sprintInput;
-    private bool isGrounded;
+    protected bool isGrounded;
 
     public PlayerGroundedState(
         Player player,

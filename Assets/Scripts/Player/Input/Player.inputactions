@@ -134,7 +134,7 @@
                 {
                     "name": "",
                     "id": "9a9263d1-6e6c-4236-83e0-e67386add4b7",
-                    "path": "<Keyboard>/leftMeta",
+                    "path": "<Keyboard>/leftCtrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",

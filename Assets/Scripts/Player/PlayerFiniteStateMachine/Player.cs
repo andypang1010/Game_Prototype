@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
     public new Rigidbody2D rigidbody { get; private set; }
 
     [SerializeField]
-    private readonly PlayerData playerData;
+    private PlayerData playerData;
     #endregion
 
     #region Check Transforms
@@ -50,6 +50,8 @@ public class Player : MonoBehaviour
         jumpState = new PlayerJumpState(this, stateMachine, playerData, "inAir");
         inAirState = new PlayerInAirState(this, stateMachine, playerData, "inAir");
         landState = new PlayerLandState(this, stateMachine, playerData, "land");
+        crouchIdleState = new PlayerCrouchIdleState(this, stateMachine, playerData, "crouchIdle");
+        crouchMoveState = new PlayerCrouchMoveState(this, stateMachine, playerData, "crouchMove");
     }
 
     private void Start()
