@@ -4,17 +4,13 @@ using UnityEngine;
 
 public class PlayerGroundedState : PlayerState
 {
-    protected int xInput;
-    protected int yInput;
+    protected int xInput,
+        yInput;
 
-<<<<<<< Updated upstream
-    private bool jumpInput;
-    private bool isGrounded;
-=======
     protected bool jumpInput,
         crouchInput,
         sprintInput;
->>>>>>> Stashed changes
+    protected bool isGrounded;
 
     public PlayerGroundedState(
         Player player,
@@ -47,15 +43,16 @@ public class PlayerGroundedState : PlayerState
     {
         base.LogicUpdate();
 
-        xInput = player.InputHandler.normalizedInputX;
-        yInput = player.InputHandler.normalizedInputY;
+        xInput = player.inputHandler.normalizedInputX;
+        yInput = player.inputHandler.normalizedInputY;
 
-        jumpInput = player.InputHandler.jumpInput;
+        jumpInput = player.inputHandler.jumpInput;
+        crouchInput = player.inputHandler.crouchInput;
+        sprintInput = player.inputHandler.sprintInput;
 
-        if (jumpInput && player.jumpState.CanJump())
+        if (jumpInput && player.jumpState.CanJump() && !crouchInput)
         {
-<<<<<<< Updated upstream
-            player.InputHandler.UseJumpInput();
+            player.inputHandler.UseJumpInput();
             stateMachine.ChangeState(player.jumpState);
         }
         else if (!isGrounded)

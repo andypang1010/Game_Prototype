@@ -32,11 +32,8 @@ public class PlayerIdleState : PlayerGroundedState
     {
         base.LogicUpdate();
 
-        if (xInput != 0)
+        if (!isExitingState)
         {
-<<<<<<< Updated upstream
-            stateMachine.ChangeState(player.moveState);
-=======
             if (xInput != 0)
             {
                 stateMachine.ChangeState(player.moveState);
@@ -45,7 +42,6 @@ public class PlayerIdleState : PlayerGroundedState
             {
                 stateMachine.ChangeState(player.crouchIdleState);
             }
->>>>>>> Stashed changes
         }
     }
 

@@ -19,6 +19,11 @@ public class PlayerCrouchIdleState : PlayerGroundedState
         player.SetVelocityZero();
     }
 
+    public override void Exit()
+    {
+        base.Exit();
+    }
+
     public override void LogicUpdate()
     {
         base.LogicUpdate();

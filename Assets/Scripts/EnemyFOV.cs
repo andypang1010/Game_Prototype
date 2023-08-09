@@ -57,54 +57,54 @@ public class EnemyFOV : MonoBehaviour
             // Check distance to player
             float targetDistance = Vector2.Distance(transform.position, targetTransform.position);
 
-            if (
-                (
-                    // If player is on stealth mode and is within stealth hearing radius
-                    targetDistance < stealthHearingRadius
-                    && player.GetComponent<PlayerMovement>().stealthMoving
-                )
-                || (
-                    // If player is on walking / climbing mode and is within walking hearing radius
-                    targetDistance < walkingHearingRadius
-                    && (
-                        (
-                            !player.GetComponent<PlayerMovement>().sprintMoving
-                            && !player.GetComponent<PlayerMovement>().stealthMoving
-                        )
-                    )
-                )
-                || (
-                    // If player is on running mode and is within running hearing radius
-                    targetDistance < runningHearingRadius
-                    && player.GetComponent<PlayerMovement>().sprintMoving
-                )
-            )
-            {
-                playerFound = true;
-            }
-            else if (Vector2.Angle(transform.right, targetDirection) < (viewAngle / 2))
-            {
-                // If no obstructing game object exists between player and enemy, then player is found
-                if (
-                    !Physics2D.Raycast(
-                        transform.position,
-                        targetDirection,
-                        targetDistance,
-                        obstructionMask
-                    )
-                )
-                {
-                    playerFound = true;
-                }
-                else
-                {
-                    playerFound = false;
-                }
-            }
-            else
-            {
-                playerFound = false;
-            }
+            //if (
+            //    (
+            //        // If player is on stealth mode and is within stealth hearing radius
+            //        targetDistance < stealthHearingRadius
+            //        && player.GetComponent<PlayerMovement>().stealthMoving
+            //    )
+            //    || (
+            //        // If player is on walking / climbing mode and is within walking hearing radius
+            //        targetDistance < walkingHearingRadius
+            //        && (
+            //            (
+            //                !player.GetComponent<PlayerMovement>().sprintMoving
+            //                && !player.GetComponent<PlayerMovement>().stealthMoving
+            //            )
+            //        )
+            //    )
+            //    || (
+            //        // If player is on running mode and is within running hearing radius
+            //        targetDistance < runningHearingRadius
+            //        && player.GetComponent<PlayerMovement>().sprintMoving
+            //    )
+            //)
+            //{
+            //    playerFound = true;
+            //}
+            //else if (Vector2.Angle(transform.right, targetDirection) < (viewAngle / 2))
+            //{
+            //    // If no obstructing game object exists between player and enemy, then player is found
+            //    if (
+            //        !Physics2D.Raycast(
+            //            transform.position,
+            //            targetDirection,
+            //            targetDistance,
+            //            obstructionMask
+            //        )
+            //    )
+            //    {
+            //        playerFound = true;
+            //    }
+            //    else
+            //    {
+            //        playerFound = false;
+            //    }
+            //}
+            //else
+            //{
+            //    playerFound = false;
+            //}
         }
         else
         {

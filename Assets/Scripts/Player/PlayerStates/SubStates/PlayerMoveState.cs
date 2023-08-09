@@ -27,14 +27,16 @@ public class PlayerMoveState : PlayerGroundedState
         base.LogicUpdate();
 
         player.CheckIfShouldFlip(xInput);
+        player.SetVelocityX(
+            player.CalculateVelocityX(
+                xInput,
+                playerData.moveMaxSpeed,
+                playerData.moveMaxAcceleration
+            )
+        );
 
-        player.SetVelocityX(playerData.movementVelocity * xInput);
-
-        if (xInput == 0)
+        if (!isExitingState)
         {
-<<<<<<< Updated upstream
-            stateMachine.ChangeState(player.idleState);
-=======
             if (xInput == 0)
             {
                 stateMachine.ChangeState(player.idleState);
@@ -43,7 +45,10 @@ public class PlayerMoveState : PlayerGroundedState
             {
                 stateMachine.ChangeState(player.crouchMoveState);
             }
->>>>>>> Stashed changes
+            else if (sprintInput)
+            {
+                stateMachine.ChangeState(player.sprintState);
+            }
         }
     }
 

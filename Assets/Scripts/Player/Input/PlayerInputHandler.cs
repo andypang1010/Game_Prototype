@@ -8,9 +8,11 @@ public class PlayerInputHandler : MonoBehaviour
     public int normalizedInputY { get; private set; }
     public bool jumpInput { get; private set; }
     public bool jumpInputStop { get; private set; }
+    public bool crouchInput { get; private set; }
+    public bool sprintInput { get; private set; }
 
     [SerializeField]
-    private float inputHoldTime = 0.2f;
+    private readonly float inputHoldTime = 0.2f;
 
     private float jumpInputStartTime;
 
@@ -53,33 +55,36 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void OnCrouchInput(InputAction.CallbackContext context)
     {
-<<<<<<< Updated upstream
-        print("Crouch input");
-=======
         if (context.started)
         {
-            CrouchInput = true;
+            crouchInput = true;
         }
+
         else if (context.canceled)
         {
-            CrouchInput = false;
+            crouchInput = false;
         }
->>>>>>> Stashed changes
     }
 
     public void OnSprintInput(InputAction.CallbackContext context)
     {
-<<<<<<< Updated upstream
-        print("Sprint input");
-=======
-        if (context.started)
+        if (context.control.device.name == "Keyboard")
         {
-            SprintInput = true;
+            if (context.started)
+            {
+                sprintInput = true;
+            }
+            else if (context.canceled)
+            {
+                sprintInput = false;
+            }
         }
-        else if (context.canceled)
+        else
         {
-            SprintInput = false;
+            if (context.started)
+            {
+                sprintInput = !sprintInput;
+            }
         }
->>>>>>> Stashed changes
     }
 }

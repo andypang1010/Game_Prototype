@@ -11,10 +11,13 @@ public class PlayerInAirState : PlayerState
     private bool coyoteTime;
     private bool isJumping;
 
-    public PlayerInAirState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
-    {
-
-    }
+    public PlayerInAirState(
+        Player player,
+        PlayerStateMachine stateMachine,
+        PlayerData playerData,
+        string animBoolName
+    )
+        : base(player, stateMachine, playerData, animBoolName) { }
 
     public override void DoChecks()
     {
@@ -39,9 +42,9 @@ public class PlayerInAirState : PlayerState
 
         CheckCoyoteTime();
 
-        xInput = player.InputHandler.normalizedInputX;
-        jumpInput = player.InputHandler.jumpInput;
-        jumpInputStop = player.InputHandler.jumpInputStop;
+        xInput = player.inputHandler.normalizedInputX;
+        jumpInput = player.inputHandler.jumpInput;
+        jumpInputStop = player.inputHandler.jumpInputStop;
 
         CheckJumpMultiplier();
 
@@ -56,14 +59,11 @@ public class PlayerInAirState : PlayerState
         else
         {
             player.CheckIfShouldFlip(xInput);
-<<<<<<< Updated upstream
-            player.SetVelocityX(playerData.movementVelocity * xInput);
+            player.SetVelocityX(Mathf.Abs(player.currentVelocity.x) * xInput);
 
-            player.Anim.SetFloat("yVelocity", player.currentVelocity.y);
-            player.Anim.SetFloat("xVelocity", Mathf.Abs(player.currentVelocity.x));
+            player.anim.SetFloat("yVelocity", player.currentVelocity.y);
+            player.anim.SetFloat("xVelocity", Mathf.Abs(player.currentVelocity.x));
         }
-
-
     }
 
     private void CheckJumpMultiplier()

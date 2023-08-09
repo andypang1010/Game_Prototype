@@ -5,25 +5,25 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
-    int frameRate = 30;
+    int frameRate = 60;
 
-    bool gameOver = false;
+    //bool gameOver = false;
 
     void Start()
     {
         Application.targetFrameRate = frameRate;
     }
 
-    void Update()
-    {
-        if (gameOver == true)
-        {
-            ShowGameOver();
-            Invoke("ReturnMenu", 3f);
-        }
-    }
+    //void Update()
+    //{
+    //    if (gameOver == true)
+    //    {
+    //        ShowGameOver();
+    //        Invoke("ReturnMenu", 3f);
+    //    }
+    //}
 
-    void ReturnMenu() { }
+    //void ReturnMenu() { }
 
-    void ShowGameOver() { }
+    //void ShowGameOver() { }
 }
