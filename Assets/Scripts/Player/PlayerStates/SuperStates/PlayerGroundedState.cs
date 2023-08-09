@@ -39,6 +39,11 @@ public class PlayerGroundedState : PlayerState
         base.Exit();
     }
 
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
+    }
+
     public override void LogicUpdate()
     {
         base.LogicUpdate();
@@ -60,15 +65,6 @@ public class PlayerGroundedState : PlayerState
             player.inAirState.StartCoyoteTime();
             stateMachine.ChangeState(player.inAirState);
         }
-=======
-            player.inputHandler.UseJumpInput();
-            stateMachine.ChangeState(player.jumpState);
-        }
->>>>>>> Stashed changes
-    }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
     }
 }
+

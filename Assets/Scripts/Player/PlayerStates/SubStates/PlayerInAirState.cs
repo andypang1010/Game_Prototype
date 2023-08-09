@@ -79,12 +79,10 @@ public class PlayerInAirState : PlayerState
             {
                 isJumping = false;
             }
-=======
-            player.SetVelocityX(player.CurrentVelocity.x);
+            player.SetVelocityX(player.currentVelocity.x);
 
-            player.anim.SetFloat("xVelocity", Mathf.Abs(player.CurrentVelocity.x));
-            player.anim.SetFloat("yVelocity", player.CurrentVelocity.y);
->>>>>>> Stashed changes
+            player.anim.SetFloat("xVelocity", Mathf.Abs(player.currentVelocity.x));
+            player.anim.SetFloat("yVelocity", player.currentVelocity.y);
         }
     }
 
