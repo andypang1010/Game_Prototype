@@ -19,7 +19,7 @@ public class PlayerJumpState : PlayerAbilityState
         float currentJumpVelocity;
 
         float slope = (playerData.sprintJumpVelocity - playerData.jumpVelocity) / (playerData.sprintMaxSpeed - playerData.moveMaxSpeed);
-        currentJumpVelocity = player.currentVelocity.x * slope + (playerData.jumpVelocity - slope * playerData.moveMaxSpeed);
+        currentJumpVelocity = Mathf.Abs(player.currentVelocity.x) * slope + (playerData.jumpVelocity - slope * playerData.moveMaxSpeed);
 
         currentJumpVelocity = Mathf.Clamp(currentJumpVelocity, playerData.jumpVelocity, playerData.sprintJumpVelocity);
         Debug.Log(currentJumpVelocity);
@@ -39,7 +39,7 @@ public class PlayerJumpState : PlayerAbilityState
 
     public bool CanJump()
     {
-        if(amountOfJumpsLeft > 0)
+        if (amountOfJumpsLeft > 0)
         {
             return true;
         }
