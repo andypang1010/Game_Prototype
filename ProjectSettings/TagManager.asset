@@ -17,7 +17,7 @@ TagManager:
   - Player
   - Enemy
   - Ladder
-  - 
+  - Damageable
   - 
   - 
   - 
@@ -43,4 +43,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Enemy
+    uniqueID: 718718969
     locked: 0
