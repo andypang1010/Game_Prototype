@@ -19,8 +19,8 @@ MonoBehaviour:
   amountOfJumps: 1
   coyoteTime: 0.2
   variableJumpHeightMultiplier: 0.5
-  crouchMaxSpeed: 4
-  crouchMaxAcceleration: 4
+  crouchMaxSpeed: 2
+  crouchMaxAcceleration: 2
   sprintMaxSpeed: 12
   sprintMaxAcceleration: 10
   groundCheckRadius: 0.3

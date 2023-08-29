@@ -15,13 +15,15 @@ public class Player : MonoBehaviour
     public PlayerCrouchIdleState crouchIdleState { get; private set; }
     public PlayerCrouchMoveState crouchMoveState { get; private set; }
     public PlayerSprintState sprintState { get; private set; }
+    public PlayerClimbIdleState climbIdleState { get; private set; }
+    public PlayerClimbMoveState climbMoveState { get; private set; }
 
     #endregion
 
     #region Components
     public Animator anim { get; private set; }
     public PlayerInputHandler inputHandler { get; private set; }
-    public new Rigidbody2D rigidbody { get; private set; }
+    public Rigidbody2D rigidbody { get; private set; }
 
     [SerializeField]
     private PlayerData playerData;
@@ -54,6 +56,8 @@ public class Player : MonoBehaviour
         crouchIdleState = new PlayerCrouchIdleState(this, stateMachine, playerData, "crouchIdle");
         crouchMoveState = new PlayerCrouchMoveState(this, stateMachine, playerData, "crouchMove");
         sprintState = new PlayerSprintState(this, stateMachine, playerData, "sprint");
+        climbIdleState = new PlayerClimbIdleState(this, stateMachine, playerData, "climbIdle");
+        climbMoveState = new PlayerClimbMoveState(this, stateMachine, playerData, "climbMove");
     }
 
     private void Start()
@@ -137,7 +141,17 @@ public class Player : MonoBehaviour
     {
         Vector2 desiredVelocity = new Vector2(xInput, 0f) * maxSpeed;
         float maxSpeedChange = maxAcceleration * Time.deltaTime;
-        return Mathf.MoveTowards(currentVelocity.x, desiredVelocity.x, maxSpeedChange);
+        return (
+            // Prevents player sliding when changing direction or stopping
+            xInput == 0
+            || (
+                xInput != 0
+                && currentVelocity.x != 0
+                && Mathf.Sign(xInput) != Mathf.Sign(currentVelocity.x)
+            )
+        )
+            ? 0
+            : Mathf.MoveTowards(currentVelocity.x, desiredVelocity.x, maxSpeedChange);
     }
 
     #endregion
