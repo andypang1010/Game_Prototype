@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
     #region Components
     public Animator anim { get; private set; }
     public PlayerInputHandler inputHandler { get; private set; }
-    public Rigidbody2D rigidbody { get; private set; }
+    public new Rigidbody2D rigidbody { get; private set; }
 
     [SerializeField]
     private PlayerData playerData;
@@ -152,6 +152,14 @@ public class Player : MonoBehaviour
         )
             ? 0
             : Mathf.MoveTowards(currentVelocity.x, desiredVelocity.x, maxSpeedChange);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Ladder"))
+        {
+
+        }
     }
 
     #endregion

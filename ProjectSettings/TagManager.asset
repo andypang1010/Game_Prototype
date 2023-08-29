@@ -11,13 +11,13 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Ground
+  - Level
   - Water
   - UI
   - Player
   - Enemy
-  - Ladder
-  - 
+  - Interactables
+  - Dead
   - 
   - 
   - 
@@ -41,6 +41,24 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Foreground
+    uniqueID: 3998744421
+    locked: 0
+  - name: Characters
+    uniqueID: 2537958387
+    locked: 0
+  - name: Dead
+    uniqueID: 158892679
+    locked: 0
+  - name: Level
+    uniqueID: 4165400069
+    locked: 0
+  - name: Interactables
+    uniqueID: 2973452275
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 4279316443
     locked: 0

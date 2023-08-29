@@ -7,6 +7,7 @@ public class PlayerAbilityState : PlayerState
     protected bool isAbilityDone;
 
     private bool isGrounded;
+    private bool isOnLadder;
 
     public PlayerAbilityState(
         Player player,
