@@ -79,6 +79,10 @@ public class PlayerInAirState : PlayerState
             {
                 isJumping = false;
             }
+            player.SetVelocityX(player.currentVelocity.x);
+
+            player.anim.SetFloat("xVelocity", Mathf.Abs(player.currentVelocity.x));
+            player.anim.SetFloat("yVelocity", player.currentVelocity.y);
         }
     }
 

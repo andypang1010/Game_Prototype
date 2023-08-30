@@ -39,6 +39,11 @@ public class PlayerGroundedState : PlayerState
         base.Exit();
     }
 
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
+    }
+
     public override void LogicUpdate()
     {
         base.LogicUpdate();
@@ -61,9 +66,5 @@ public class PlayerGroundedState : PlayerState
             stateMachine.ChangeState(player.inAirState);
         }
     }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
-    }
 }
+

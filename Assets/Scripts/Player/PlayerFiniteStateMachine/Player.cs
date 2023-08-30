@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
     public PlayerCrouchIdleState crouchIdleState { get; private set; }
     public PlayerCrouchMoveState crouchMoveState { get; private set; }
     public PlayerSprintState sprintState { get; private set; }
+    public PlayerClimbIdleState climbIdleState { get; private set; }
+    public PlayerClimbMoveState climbMoveState { get; private set; }
 
     #endregion
 
@@ -30,7 +32,7 @@ public class Player : MonoBehaviour
     #region Check Transforms
 
     [SerializeField]
-    private Transform groundCheck;
+    public Transform groundCheck;
 
     #endregion
 
@@ -54,6 +56,8 @@ public class Player : MonoBehaviour
         crouchIdleState = new PlayerCrouchIdleState(this, stateMachine, playerData, "crouchIdle");
         crouchMoveState = new PlayerCrouchMoveState(this, stateMachine, playerData, "crouchMove");
         sprintState = new PlayerSprintState(this, stateMachine, playerData, "sprint");
+        climbIdleState = new PlayerClimbIdleState(this, stateMachine, playerData, "climbIdle");
+        climbMoveState = new PlayerClimbMoveState(this, stateMachine, playerData, "climbMove");
     }
 
     private void Start()
@@ -137,7 +141,25 @@ public class Player : MonoBehaviour
     {
         Vector2 desiredVelocity = new Vector2(xInput, 0f) * maxSpeed;
         float maxSpeedChange = maxAcceleration * Time.deltaTime;
-        return Mathf.MoveTowards(currentVelocity.x, desiredVelocity.x, maxSpeedChange);
+        return (
+            // Prevents player sliding when changing direction or stopping
+            xInput == 0
+            || (
+                xInput != 0
+                && currentVelocity.x != 0
+                && Mathf.Sign(xInput) != Mathf.Sign(currentVelocity.x)
+            )
+        )
+            ? 0
+            : Mathf.MoveTowards(currentVelocity.x, desiredVelocity.x, maxSpeedChange);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Ladder"))
+        {
+
+        }
     }
 
     #endregion

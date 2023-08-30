@@ -15,14 +15,14 @@ MonoBehaviour:
   moveMaxSpeed: 6
   moveMaxAcceleration: 6
   jumpVelocity: 15
-  sprintJumpVelocity: 22
+  sprintJumpVelocity: 20
   amountOfJumps: 1
   coyoteTime: 0.2
   variableJumpHeightMultiplier: 0.5
-  crouchMaxSpeed: 4
-  crouchMaxAcceleration: 4
-  sprintMaxSpeed: 12
-  sprintMaxAcceleration: 10
+  crouchMaxSpeed: 2
+  crouchMaxAcceleration: 2
+  sprintMaxSpeed: 9
+  sprintMaxAcceleration: 9
   groundCheckRadius: 0.3
   ground:
     serializedVersion: 2

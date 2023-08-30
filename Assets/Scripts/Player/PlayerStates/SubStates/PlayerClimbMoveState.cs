@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerIdleState : PlayerGroundedState
+public class PlayerClimbMoveState : PlayerAbilityState
 {
-    public PlayerIdleState(
+    public PlayerClimbMoveState(
         Player player,
         PlayerStateMachine stateMachine,
         PlayerData playerData,
@@ -20,7 +20,6 @@ public class PlayerIdleState : PlayerGroundedState
     public override void Enter()
     {
         base.Enter();
-        player.SetVelocityZero();
     }
 
     public override void Exit()
@@ -31,22 +30,5 @@ public class PlayerIdleState : PlayerGroundedState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-
-        if (!isExitingState)
-        {
-            if (xInput != 0)
-            {
-                stateMachine.ChangeState(player.moveState);
-            }
-            else if (crouchInput)
-            {
-                stateMachine.ChangeState(player.crouchIdleState);
-            }
-        }
-    }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
     }
 }
