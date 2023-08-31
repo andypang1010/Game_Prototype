@@ -18,7 +18,7 @@ TagManager:
   - Enemy
   - Interactables
   - Dead
-  - 
+  - Ladder
   - 
   - 
   - 
@@ -52,6 +52,9 @@ TagManager:
     locked: 0
   - name: Interactables
     uniqueID: 2973452275
+    locked: 0
+  - name: Ground
+    uniqueID: 687532693
     locked: 0
   - name: Dead
     uniqueID: 158892679

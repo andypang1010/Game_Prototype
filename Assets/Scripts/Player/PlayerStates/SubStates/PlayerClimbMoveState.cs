@@ -12,23 +12,20 @@ public class PlayerClimbMoveState : PlayerAbilityState
     )
         : base(player, stateMachine, playerData, animBoolName) { }
 
-    public override void DoChecks()
-    {
-        base.DoChecks();
-    }
-
-    public override void Enter()
-    {
-        base.Enter();
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-    }
-
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+
+        player.SetVelocityX(0f);
+
+        if (yInput != 0f)
+        {
+            player.SetVelocityY(yInput * playerData.climbSpeed);
+        }
+
+        else
+        {
+            stateMachine.ChangeState(player.climbIdleState);
+        }
     }
 }

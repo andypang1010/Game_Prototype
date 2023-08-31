@@ -15,15 +15,21 @@ MonoBehaviour:
   moveMaxSpeed: 6
   moveMaxAcceleration: 6
   jumpVelocity: 15
-  sprintJumpVelocity: 20
+  sprintJumpVelocity: 18
   amountOfJumps: 1
   coyoteTime: 0.2
   variableJumpHeightMultiplier: 0.5
   crouchMaxSpeed: 2
   crouchMaxAcceleration: 2
+  crouchSizeMultiplier: 0.6
   sprintMaxSpeed: 9
   sprintMaxAcceleration: 9
+  climbSpeed: 4
   groundCheckRadius: 0.3
   ground:
     serializedVersion: 2
     m_Bits: 8
+  ladderCheckRadius: 0.2
+  ladder:
+    serializedVersion: 2
+    m_Bits: 1024

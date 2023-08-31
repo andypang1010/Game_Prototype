@@ -33,6 +33,8 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     public Transform groundCheck;
+    public Transform ceilingCheck;
+    public Transform ladderCheck;
 
     #endregion
 
@@ -104,6 +106,11 @@ public class Player : MonoBehaviour
         rigidbody.velocity = workspace;
         currentVelocity = workspace;
     }
+
+    public void SetPosition(Vector2 position)
+    {
+        rigidbody.MovePosition(position);
+    }
     #endregion
 
     #region Check Functions
@@ -116,6 +123,11 @@ public class Player : MonoBehaviour
         );
     }
 
+    public bool CheckIfHasCeiling()
+    {
+        return false;
+    }
+
     public void CheckIfShouldFlip(int xInput)
     {
         if (xInput != 0 && xInput != FacingDirection)
@@ -123,6 +135,16 @@ public class Player : MonoBehaviour
             Flip();
         }
     }
+
+    public bool CheckIfHasLadder()
+    {
+        return Physics2D.OverlapCircle(
+            ladderCheck.position,
+            playerData.ladderCheckRadius,
+            playerData.ladder
+        );
+    }
+
     #endregion
 
     #region Other Functions
@@ -152,14 +174,6 @@ public class Player : MonoBehaviour
         )
             ? 0
             : Mathf.MoveTowards(currentVelocity.x, desiredVelocity.x, maxSpeedChange);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Ladder"))
-        {
-
-        }
     }
 
     #endregion
