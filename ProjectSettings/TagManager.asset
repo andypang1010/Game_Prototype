@@ -21,9 +21,7 @@ TagManager:
   - Interactables
   - Dead
   - Ladder
-  - 
-  - 
-  - 
+  - TransparentLevel
   - 
   - 
   - 
@@ -48,6 +46,7 @@ TagManager:
     locked: 0
   - name: Enemy
     uniqueID: 718718969
+    locked: 0
   - name: Background
     uniqueID: 4279316443
     locked: 0

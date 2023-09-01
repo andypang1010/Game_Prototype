@@ -135,6 +135,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BasicEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 1598283258511171889, guid: 019f8bbcef670d643acb8fea649809e8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3552929065770025350, guid: 019f8bbcef670d643acb8fea649809e8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.36
@@ -503,8 +507,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0026499927, y: 0.00059998035, z: 0}
-    m_Extent: {x: 0.86354995, y: 0.8599, z: 0}
+    m_Center: {x: -0.00034999847, y: 0.001850009, z: 0}
+    m_Extent: {x: 0.86445, y: 0.86465, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -698,7 +702,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -129567227
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.37647063, g: 0.37647063, b: 0.37647063, a: 1}
@@ -895,8 +899,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.0031000078, y: -0.0036999881, z: 0}
-    m_Extent: {x: 0.86660004, y: 0.8622, z: 0}
+    m_Center: {x: 0.006499976, y: 0.000100016594, z: 0}
+    m_Extent: {x: 0.8615, y: 0.8689, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -1029,7 +1033,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -129567227
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.37647063, g: 0.37647063, b: 0.37647063, a: 1}
@@ -1289,3 +1293,4 @@ SceneRoots:
   - {fileID: 636758982}
   - {fileID: 789489692}
   - {fileID: 2061103096}
+  - {fileID: 99765213}

@@ -109,7 +109,7 @@ public class Player : MonoBehaviour
 
     public void SetPosition(Vector2 position)
     {
-        rigidbody.MovePosition(position);
+        gameObject.transform.position = position;
     }
     #endregion
 
@@ -164,6 +164,7 @@ public class Player : MonoBehaviour
         Vector2 desiredVelocity = new Vector2(xInput, 0f) * maxSpeed;
         float maxSpeedChange = maxAcceleration * Time.deltaTime;
         return (
+
             // Prevents player sliding when changing direction or stopping
             xInput == 0
             || (
@@ -172,8 +173,23 @@ public class Player : MonoBehaviour
                 && Mathf.Sign(xInput) != Mathf.Sign(currentVelocity.x)
             )
         )
-            ? 0
+            ? Mathf.MoveTowards(currentVelocity.x, desiredVelocity.x, 5 * maxSpeedChange)
             : Mathf.MoveTowards(currentVelocity.x, desiredVelocity.x, maxSpeedChange);
+    }
+
+    public GameObject GetLadderObject()
+    {
+        if (CheckIfHasLadder())
+        {
+            return Physics2D.OverlapCircle(
+                ladderCheck.position,
+                playerData.ladderCheckRadius,
+                playerData.ladder
+            ).gameObject;
+        }
+
+        return null;
+        
     }
 
     #endregion
