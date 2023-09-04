@@ -34,7 +34,7 @@ public class PlayerClimbMoveState : PlayerAbilityState
     {
         base.LogicUpdate();
 
-        if (yInput != 0f)
+        if (yInput != 0f && player.CheckIfHasLadder())
         {
             player.SetVelocityY(yInput * playerData.climbSpeed);
         }

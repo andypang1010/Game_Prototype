@@ -35,4 +35,7 @@ public class PlayerData : ScriptableObject
     public LayerMask ground;
     public float ladderCheckRadius;
     public LayerMask ladder;
+
+    [Header("Others")]
+    public float gravityScale = 5f;
 }

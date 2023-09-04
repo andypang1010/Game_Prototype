@@ -55,18 +55,6 @@ public class PlayerAbilityState : PlayerState
                     stateMachine.ChangeState(player.inAirState);
                 }
             }
-
-            else if (hasLadder)
-            {
-                if (Mathf.Abs(player.currentVelocity.y) > 0f) 
-                {
-                    stateMachine.ChangeState(player.climbMoveState);
-                }
-                else
-                {
-                    stateMachine.ChangeState(player.climbIdleState);
-                }
-            }
         }
     }
 

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c632de00836fecd49a0b860eced8a036, type: 3}
   m_Name: playerData
   m_EditorClassIdentifier: 
-  moveMaxSpeed: 6
-  moveMaxAcceleration: 6
+  moveMaxSpeed: 5
+  moveMaxAcceleration: 7
   jumpVelocity: 15
   sprintJumpVelocity: 18
   amountOfJumps: 1
@@ -22,8 +22,8 @@ MonoBehaviour:
   crouchMaxSpeed: 2
   crouchMaxAcceleration: 2
   crouchSizeMultiplier: 0.6
-  sprintMaxSpeed: 9
-  sprintMaxAcceleration: 9
+  sprintMaxSpeed: 8
+  sprintMaxAcceleration: 12
   climbSpeed: 4
   groundCheckRadius: 0.3
   ground:
@@ -33,3 +33,4 @@ MonoBehaviour:
   ladder:
     serializedVersion: 2
     m_Bits: 1024
+  gravityScale: 5

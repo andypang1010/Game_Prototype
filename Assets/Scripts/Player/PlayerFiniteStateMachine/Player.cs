@@ -67,6 +67,7 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
         inputHandler = GetComponent<PlayerInputHandler>();
         rigidbody = GetComponent<Rigidbody2D>();
+        rigidbody.gravityScale = playerData.gravityScale;
 
         FacingDirection = 1;
 

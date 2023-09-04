@@ -17,7 +17,8 @@ public class PlayerClimbIdleState : PlayerAbilityState
         base.Enter();
 
         player.SetVelocityX(0f);
-        player.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+        player.rigidbody.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+        player.rigidbody.gravityScale = 0f;
         player.SetPosition(new Vector2(player.GetLadderObject().transform.position.x, player.gameObject.transform.position.y));
 
     }
@@ -26,7 +27,8 @@ public class PlayerClimbIdleState : PlayerAbilityState
     {
         base.Exit();
 
-        player.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+        player.rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+        player.rigidbody.gravityScale = playerData.gravityScale;
     }
 
     public override void LogicUpdate()
