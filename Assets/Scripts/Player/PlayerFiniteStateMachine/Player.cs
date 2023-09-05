@@ -34,7 +34,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     public Transform groundCheck;
     public Transform ceilingCheck;
-    public Transform ladderCheck;
 
     #endregion
 
@@ -140,10 +139,13 @@ public class Player : MonoBehaviour
     public bool CheckIfHasLadder()
     {
         return Physics2D.OverlapCircle(
-            ladderCheck.position,
+            groundCheck.position,
             playerData.ladderCheckRadius,
             playerData.ladder
-        );
+        ) || Physics2D.OverlapCircle(
+            ceilingCheck.position,
+            playerData.ladderCheckRadius,
+            playerData.ladder);
     }
 
     #endregion
@@ -182,15 +184,28 @@ public class Player : MonoBehaviour
     {
         if (CheckIfHasLadder())
         {
-            return Physics2D.OverlapCircle(
-                ladderCheck.position,
+            GameObject bottomCheck = Physics2D.OverlapCircle(
+                groundCheck.position,
                 playerData.ladderCheckRadius,
                 playerData.ladder
             ).gameObject;
+
+            if (bottomCheck.CompareTag("Ladder")) {
+                return bottomCheck;
+            }
+
+            GameObject topCheck = Physics2D.OverlapCircle(
+                ceilingCheck.position,
+                playerData.ladderCheckRadius,
+                playerData.ladder
+            ).gameObject;
+
+            if (topCheck.CompareTag("Ladder")) {
+                return topCheck;
+            }
         }
 
         return null;
-        
     }
 
     #endregion

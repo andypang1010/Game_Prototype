@@ -17,9 +17,9 @@ public class PlayerClimbIdleState : PlayerAbilityState
         base.Enter();
 
         player.SetVelocityX(0f);
+        player.SetPosition(new Vector2(player.GetLadderObject().transform.position.x, player.gameObject.transform.position.y));
         player.rigidbody.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
         player.rigidbody.gravityScale = 0f;
-        player.SetPosition(new Vector2(player.GetLadderObject().transform.position.x, player.gameObject.transform.position.y));
 
     }
 
@@ -43,6 +43,10 @@ public class PlayerClimbIdleState : PlayerAbilityState
         else if (yInput != 0f)
         {
             stateMachine.ChangeState(player.climbMoveState);
+        }
+
+        else if (jumpInput) {
+            stateMachine.ChangeState(player.jumpState);
         }
 
         else

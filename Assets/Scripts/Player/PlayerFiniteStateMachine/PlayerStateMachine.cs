@@ -19,4 +19,8 @@ public class PlayerStateMachine
         currentState = newState;
         currentState.Enter();
     }
+
+    public string GetState() {
+        return currentState.GetType().Name;
+    }
 }

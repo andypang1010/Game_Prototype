@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerAbilityState : PlayerState
 {
     protected int yInput;
+    protected bool jumpInput;
     protected bool isAbilityDone, isGrounded, hasLadder, hasCeiling;
 
     public PlayerAbilityState(
@@ -41,6 +42,7 @@ public class PlayerAbilityState : PlayerState
         base.LogicUpdate();
 
         yInput = player.inputHandler.normalizedInputY;
+        jumpInput = player.inputHandler.jumpInput;
 
         if (isAbilityDone)
         {
