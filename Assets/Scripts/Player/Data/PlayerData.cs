@@ -21,12 +21,21 @@ public class PlayerData : ScriptableObject
     [Header("Crouch State")]
     public float crouchMaxSpeed = 6f;
     public float crouchMaxAcceleration = 20f;
+    public float crouchSizeMultiplier = 0.6f;
 
     [Header("Sprint State")]
     public float sprintMaxSpeed = 15f;
     public float sprintMaxAcceleration = 45f;
 
+    [Header("Climb State")]
+    public float climbSpeed = 10f;
+
     [Header("Check Variables")]
     public float groundCheckRadius;
     public LayerMask ground;
+    public float ladderCheckRadius;
+    public LayerMask ladder;
+
+    [Header("Others")]
+    public float gravityScale = 5f;
 }

@@ -4,22 +4,50 @@ using UnityEngine;
 
 public class PlayerClimbIdleState : PlayerAbilityState
 {
-    public PlayerClimbIdleState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
-    {
-    }
+    public PlayerClimbIdleState(
+        Player player, 
+        PlayerStateMachine stateMachine, 
+        PlayerData playerData, 
+        string animBoolName
+    ) 
+        : base(player, stateMachine, playerData, animBoolName) { }
 
     public override void Enter()
     {
         base.Enter();
+
+        player.SetVelocityX(0f);
+        player.rigidbody.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+        player.rigidbody.gravityScale = 0f;
+        player.SetPosition(new Vector2(player.GetLadderObject().transform.position.x, player.gameObject.transform.position.y));
+
     }
 
     public override void Exit()
     {
         base.Exit();
+
+        player.rigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+        player.rigidbody.gravityScale = playerData.gravityScale;
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+
+        if (yInput < 0f && isGrounded || yInput > 0f && hasCeiling)
+        {
+            stateMachine.ChangeState(player.idleState);
+        }
+
+        else if (yInput != 0f)
+        {
+            stateMachine.ChangeState(player.climbMoveState);
+        }
+
+        else
+        {
+            player.SetVelocityY(0f);
+        }
     }
 }

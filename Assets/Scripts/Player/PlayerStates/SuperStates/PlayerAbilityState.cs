@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class PlayerAbilityState : PlayerState
 {
-    protected bool isAbilityDone;
-
-    private bool isGrounded;
-    private bool isOnLadder;
+    protected int yInput;
+    protected bool isAbilityDone, isGrounded, hasLadder, hasCeiling;
 
     public PlayerAbilityState(
         Player player,
@@ -22,6 +20,8 @@ public class PlayerAbilityState : PlayerState
         base.DoChecks();
 
         isGrounded = player.CheckIfGrounded();
+        hasLadder = player.CheckIfHasLadder();
+        hasCeiling = player.CheckIfHasCeiling();
     }
 
     public override void Enter()
@@ -40,15 +40,20 @@ public class PlayerAbilityState : PlayerState
     {
         base.LogicUpdate();
 
+        yInput = player.inputHandler.normalizedInputY;
+
         if (isAbilityDone)
         {
-            if (isGrounded && player.currentVelocity.y < 0.001f)
+            if (isGrounded)
             {
-                stateMachine.ChangeState(player.idleState);
-            }
-            else
-            {
-                stateMachine.ChangeState(player.inAirState);
+                if (player.currentVelocity.y < 0.001f)
+                {
+                    stateMachine.ChangeState(player.idleState);
+                }
+                else
+                {
+                    stateMachine.ChangeState(player.inAirState);
+                }
             }
         }
     }

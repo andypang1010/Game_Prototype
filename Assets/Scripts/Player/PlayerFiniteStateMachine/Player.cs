@@ -33,6 +33,8 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     public Transform groundCheck;
+    public Transform ceilingCheck;
+    public Transform ladderCheck;
 
     #endregion
 
@@ -65,6 +67,7 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
         inputHandler = GetComponent<PlayerInputHandler>();
         rigidbody = GetComponent<Rigidbody2D>();
+        rigidbody.gravityScale = playerData.gravityScale;
 
         FacingDirection = 1;
 
@@ -104,6 +107,11 @@ public class Player : MonoBehaviour
         rigidbody.velocity = workspace;
         currentVelocity = workspace;
     }
+
+    public void SetPosition(Vector2 position)
+    {
+        gameObject.transform.position = position;
+    }
     #endregion
 
     #region Check Functions
@@ -116,6 +124,11 @@ public class Player : MonoBehaviour
         );
     }
 
+    public bool CheckIfHasCeiling()
+    {
+        return false;
+    }
+
     public void CheckIfShouldFlip(int xInput)
     {
         if (xInput != 0 && xInput != FacingDirection)
@@ -123,6 +136,16 @@ public class Player : MonoBehaviour
             Flip();
         }
     }
+
+    public bool CheckIfHasLadder()
+    {
+        return Physics2D.OverlapCircle(
+            ladderCheck.position,
+            playerData.ladderCheckRadius,
+            playerData.ladder
+        );
+    }
+
     #endregion
 
     #region Other Functions
@@ -142,6 +165,7 @@ public class Player : MonoBehaviour
         Vector2 desiredVelocity = new Vector2(xInput, 0f) * maxSpeed;
         float maxSpeedChange = maxAcceleration * Time.deltaTime;
         return (
+
             // Prevents player sliding when changing direction or stopping
             xInput == 0
             || (
@@ -150,16 +174,23 @@ public class Player : MonoBehaviour
                 && Mathf.Sign(xInput) != Mathf.Sign(currentVelocity.x)
             )
         )
-            ? 0
+            ? Mathf.MoveTowards(currentVelocity.x, desiredVelocity.x, 5 * maxSpeedChange)
             : Mathf.MoveTowards(currentVelocity.x, desiredVelocity.x, maxSpeedChange);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public GameObject GetLadderObject()
     {
-        if (collision.CompareTag("Ladder"))
+        if (CheckIfHasLadder())
         {
-
+            return Physics2D.OverlapCircle(
+                ladderCheck.position,
+                playerData.ladderCheckRadius,
+                playerData.ladder
+            ).gameObject;
         }
+
+        return null;
+        
     }
 
     #endregion

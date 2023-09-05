@@ -22,7 +22,6 @@ public class PlayerJumpState : PlayerAbilityState
         currentJumpVelocity = Mathf.Abs(player.currentVelocity.x) * slope + (playerData.jumpVelocity - slope * playerData.moveMaxSpeed);
 
         currentJumpVelocity = Mathf.Clamp(currentJumpVelocity, playerData.jumpVelocity, playerData.sprintJumpVelocity);
-        Debug.Log(currentJumpVelocity);
 
         player.SetVelocityY(currentJumpVelocity);
         isAbilityDone = true;

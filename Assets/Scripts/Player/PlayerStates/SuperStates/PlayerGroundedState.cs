@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class PlayerGroundedState : PlayerState
@@ -10,7 +11,7 @@ public class PlayerGroundedState : PlayerState
     protected bool jumpInput,
         crouchInput,
         sprintInput;
-    protected bool isGrounded;
+    protected bool isGrounded, hasLadder;
 
     public PlayerGroundedState(
         Player player,
@@ -25,6 +26,7 @@ public class PlayerGroundedState : PlayerState
         base.DoChecks();
 
         isGrounded = player.CheckIfGrounded();
+        hasLadder = player.CheckIfHasLadder();
     }
 
     public override void Enter()
@@ -55,7 +57,11 @@ public class PlayerGroundedState : PlayerState
         crouchInput = player.inputHandler.crouchInput;
         sprintInput = player.inputHandler.sprintInput;
 
-        if (jumpInput && player.jumpState.CanJump() && !crouchInput)
+        if (hasLadder && yInput != 0f)
+        {
+            stateMachine.ChangeState(player.climbIdleState);
+        }
+        else if (jumpInput && player.jumpState.CanJump() && !crouchInput)
         {
             player.inputHandler.UseJumpInput();
             stateMachine.ChangeState(player.jumpState);
