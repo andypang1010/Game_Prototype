@@ -4,7 +4,13 @@ public class Interactable : MonoBehaviour
 {
     public float radius = 3f;
 
-    Transform player;
+    private Transform player;
+
+    private void Start()
+    {
+        // TODO: will not work with multiple players
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+    }
 
     private void Update()
     {
