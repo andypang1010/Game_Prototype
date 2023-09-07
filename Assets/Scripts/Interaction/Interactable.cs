@@ -4,17 +4,17 @@ public class Interactable : MonoBehaviour
 {
     public float radius = 3f;
 
-    private Transform player;
+    public Transform playerInteractionCheck;
 
     private void Start()
     {
         // TODO: will not work with multiple players
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        playerInteractionCheck = GameObject.FindGameObjectWithTag("Player").transform.Find("InteractionCheck");
     }
 
     private void Update()
     {
-        float distance = Vector3.Distance(transform.position, player.position);
+        float distance = Vector3.Distance(transform.position, playerInteractionCheck.position);
         if (distance < radius)
         {
             Interact();
