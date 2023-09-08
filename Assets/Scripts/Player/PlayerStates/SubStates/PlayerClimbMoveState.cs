@@ -44,10 +44,10 @@ public class PlayerClimbMoveState : PlayerAbilityState
             player.SetVelocityY(yInput * playerData.climbSpeed);
         } 
         
-        else if (yInput != 0f && !player.CheckIfHasLadder()) {
+        else if (!player.CheckIfHasLadder()) {
             stateMachine.ChangeState(player.idleState);
         }
-        
+
         else
         {
             stateMachine.ChangeState(player.climbIdleState);
