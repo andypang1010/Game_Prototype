@@ -157,6 +157,7 @@ GameObject:
   - component: {fileID: 912126488510711753}
   - component: {fileID: 264694505333193827}
   - component: {fileID: 3329691876489069782}
+  - component: {fileID: 2971719180527921430}
   m_Layer: 5
   m_Name: InventoryCanvas
   m_TagString: Untagged
@@ -202,7 +203,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -247,6 +248,20 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &2971719180527921430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9166063587893923140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51310d33b5971a7428749a9d28b0ba96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemsParent: {fileID: 8324787634149379593}
+  inventoryUI: {fileID: 7328628993829516894}
 --- !u!1001 &661368090507917903
 PrefabInstance:
   m_ObjectHideFlags: 0

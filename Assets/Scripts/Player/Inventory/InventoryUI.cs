@@ -23,10 +23,10 @@ public class InventoryUI : MonoBehaviour
     void Update()
     {
         // TODO: Use input handler for opening the inventory?
-        if (Input.GetButtonDown("Inventory"))
-        {
-            inventoryUI.SetActive(!inventoryUI.activeSelf);
-        }
+        //if (Input.GetButtonDown("Inventory"))
+        //{
+        //    inventoryUI.SetActive(!inventoryUI.activeSelf);
+        //}
     }
 
     private void UpdateUI()
@@ -35,7 +35,7 @@ public class InventoryUI : MonoBehaviour
         {
             if (i < inventory.items.Count)
             {
-                slots[i].AddItem(inventory.items[i]);
+                slots[i].ShowItem(inventory.items[i]);
             }
             else
             {

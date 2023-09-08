@@ -1,14 +1,17 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class InventorySlot : MonoBehaviour
 {
     public Image icon;
     public Button removeButton;
+    public TMP_Text itemCountText;
 
     private Item item;
 
-    public void AddItem(Item newItem)
+    // Show the item in the slot
+    public void ShowItem(Item newItem)
     {
         item = newItem;
 
@@ -16,6 +19,18 @@ public class InventorySlot : MonoBehaviour
         icon.sprite = item.icon;
         icon.enabled = true;
         removeButton.interactable = true;
+        int curCount = Inventory.Instance.itemsCount[newItem];
+        itemCountText.text = curCount.ToString();
+
+        // set the text color to red when max count is reached
+        if (curCount == item.maxCount)
+        {
+            itemCountText.color = Color.red;
+        }
+        else
+        {
+            itemCountText.color = Color.white;
+        }
     }
 
     public void ClearSlot()
@@ -26,11 +41,12 @@ public class InventorySlot : MonoBehaviour
         icon.sprite = null;
         icon.enabled = false;
         removeButton.interactable = false;
+        itemCountText.text = "";
     }
 
     public void OnRemoveButton()
     {
-        Inventory.Instance.Remove(item);
+        Inventory.Instance.RemoveAll(item);
     }
 
     public void UseItem()
