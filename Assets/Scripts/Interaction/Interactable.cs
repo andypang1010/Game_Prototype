@@ -4,7 +4,7 @@ public class Interactable : MonoBehaviour
 {
     public float radius = 3f;
 
-    public Transform playerInteractionCheck;
+    private Transform playerInteractionCheck;
 
     private void Start()
     {

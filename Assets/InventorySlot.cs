@@ -20,7 +20,9 @@ public class InventorySlot : MonoBehaviour
         icon.enabled = true;
         removeButton.interactable = true;
         int curCount = Inventory.Instance.itemsCount[newItem];
-        itemCountText.text = curCount.ToString();
+
+        // only show count when there's more than 1 item
+        itemCountText.text = curCount > 1 ? curCount.ToString() : "";
 
         // set the text color to red when max count is reached
         if (curCount == item.maxCount)

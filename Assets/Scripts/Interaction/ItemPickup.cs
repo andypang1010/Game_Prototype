@@ -3,6 +3,7 @@ using UnityEngine;
 public class ItemPickup : Interactable
 {
     public Item item;
+    public int pickupCount = 1;
 
     public override void Interact()
     {
@@ -12,10 +13,7 @@ public class ItemPickup : Interactable
 
     private void PickUp()
     {
-        Debug.Log("Pick up");
-
-        // TODO: allow picking up different number of items
-        bool wasPickedUp = Inventory.Instance.Add(item, 1);
+        bool wasPickedUp = Inventory.Instance.Add(item, pickupCount);
 
         if (wasPickedUp)
         {
