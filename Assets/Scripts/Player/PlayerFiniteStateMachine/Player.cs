@@ -40,7 +40,8 @@ public class Player : MonoBehaviour
     #region Other Variables
     private Vector2 workspace;
     public Vector2 currentVelocity { get; private set; }
-    public int FacingDirection { get; private set; }
+    public int facingDirection { get; private set; }
+    public bool canFlip { get; private set; }
     #endregion
 
     #region Unity Callback Functions
@@ -68,7 +69,7 @@ public class Player : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
         rigidbody.gravityScale = playerData.gravityScale;
 
-        FacingDirection = 1;
+        facingDirection = 1;
 
         stateMachine.Initialize(idleState);
     }
@@ -111,6 +112,11 @@ public class Player : MonoBehaviour
     {
         gameObject.transform.position = position;
     }
+
+    public void SetCanFlip(bool canFlip)
+    {
+        this.canFlip = canFlip;
+    }
     #endregion
 
     #region Check Functions
@@ -130,7 +136,7 @@ public class Player : MonoBehaviour
 
     public void CheckIfShouldFlip(int xInput)
     {
-        if (xInput != 0 && xInput != FacingDirection)
+        if (xInput != 0 && xInput != facingDirection)
         {
             Flip();
         }
@@ -158,7 +164,7 @@ public class Player : MonoBehaviour
 
     private void Flip()
     {
-        FacingDirection *= -1;
+        facingDirection *= -1;
         transform.Rotate(0f, 180f, 0f);
     }
 
