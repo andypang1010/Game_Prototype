@@ -763,8 +763,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.00395, y: 0.0024999976, z: 0}
-    m_Extent: {x: 0.86105, y: 0.8652, z: 0}
+    m_Center: {x: -0.0011000037, y: -0.0014499724, z: 0}
+    m_Extent: {x: 0.8671, y: 0.86225, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -833,9 +833,45 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6044995143269635008, guid: 91573ee4a4ac84b5ba9aed74f05334d9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1350605004}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6044995143269635012, guid: 91573ee4a4ac84b5ba9aed74f05334d9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 789489695}
   m_SourcePrefab: {fileID: 100100000, guid: 91573ee4a4ac84b5ba9aed74f05334d9, type: 3}
+--- !u!4 &789489693 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6044995143269635008, guid: 91573ee4a4ac84b5ba9aed74f05334d9, type: 3}
+  m_PrefabInstance: {fileID: 789489692}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &789489694 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6044995143269635012, guid: 91573ee4a4ac84b5ba9aed74f05334d9, type: 3}
+  m_PrefabInstance: {fileID: 789489692}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &789489695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 789489694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bfc419a69dcbc341bed79a1485050fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  combatEnabled: 1
+  inputTimer: 0.2
+  attack1Radius: 0.8
+  attack1Damage: 10
+  attack1HitBoxPos: {fileID: 1350605004}
+  whatIsDamageable:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &879587653
 GameObject:
   m_ObjectHideFlags: 0
@@ -1264,8 +1300,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.00014999509, y: 0.0019499958, z: 0}
-    m_Extent: {x: 0.86434996, y: 0.86144996, z: 0}
+    m_Center: {x: 0.0010499954, y: -0.0031000078, z: 0}
+    m_Extent: {x: 0.86435, y: 0.86609995, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -1479,6 +1515,37 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1989257201}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1350605003
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1350605004}
+  m_Layer: 6
+  m_Name: Attack1Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1350605004
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1350605003}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.123, y: 1.398, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 789489693}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1513796362
 GameObject:
