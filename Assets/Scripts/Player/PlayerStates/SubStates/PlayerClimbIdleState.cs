@@ -35,6 +35,10 @@ public class PlayerClimbIdleState : PlayerAbilityState
     {
         base.LogicUpdate();
 
+        if (xInput != 0) {
+            player.CheckIfShouldFlip(xInput);
+        }
+
         if (yInput < 0f && isGrounded || yInput > 0f && hasCeiling)
         {
             stateMachine.ChangeState(player.idleState);

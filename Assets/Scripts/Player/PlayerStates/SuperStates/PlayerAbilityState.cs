@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerAbilityState : PlayerState
 {
-    protected int yInput;
+    protected int xInput, yInput;
     protected bool jumpInput;
     protected bool isAbilityDone, isGrounded, hasLadder, hasCeiling;
 
@@ -41,6 +41,7 @@ public class PlayerAbilityState : PlayerState
     {
         base.LogicUpdate();
 
+        xInput = player.inputHandler.normalizedInputX;
         yInput = player.inputHandler.normalizedInputY;
         jumpInput = player.inputHandler.jumpInput;
 
