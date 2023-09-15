@@ -763,8 +763,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.0011000037, y: -0.0014499724, z: 0}
-    m_Extent: {x: 0.8671, y: 0.86225, z: 0}
+    m_Center: {x: 0.006099999, y: -0.0017499924, z: 0}
+    m_Extent: {x: 0.8631, y: 0.86055, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -787,6 +787,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3749417118100346756, guid: 91573ee4a4ac84b5ba9aed74f05334d9, type: 3}
+      propertyPath: m_TagString
+      value: InteractionCheck
+      objectReference: {fileID: 0}
     - target: {fileID: 6044995143269635008, guid: 91573ee4a4ac84b5ba9aed74f05334d9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -21.4
@@ -830,6 +834,10 @@ PrefabInstance:
     - target: {fileID: 6044995143269635012, guid: 91573ee4a4ac84b5ba9aed74f05334d9, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6044995143913134464, guid: 91573ee4a4ac84b5ba9aed74f05334d9, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1300,8 +1308,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0010499954, y: -0.0031000078, z: 0}
-    m_Extent: {x: 0.86435, y: 0.86609995, z: 0}
+    m_Center: {x: 0.004799992, y: 0.00395, z: 0}
+    m_Extent: {x: 0.8577, y: 0.86425, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0

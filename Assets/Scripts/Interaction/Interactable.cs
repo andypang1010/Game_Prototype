@@ -9,7 +9,7 @@ public class Interactable : MonoBehaviour
     private void Start()
     {
         // TODO: will not work with multiple players
-        playerInteractionCheck = GameObject.FindGameObjectWithTag("Player").transform.Find("InteractionCheck");
+        playerInteractionCheck = GameObject.FindGameObjectWithTag("InteractionCheck").transform;
     }
 
     private void Update()
